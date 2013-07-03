@@ -164,7 +164,7 @@ void Screen::draw(GraphicResource *resource, uint32 frameIndex, const Common::Po
 		                        destination.x + (int16)resourceMask->getData(4),
 		                        destination.y + (int16)resourceMask->getData(0));
 
-		clip(&srcMask, &destMask, 0);
+		//clip(&srcMask, &destMask, 0);
 
 		if (!dest.intersects(destMask))
 			masked = false;

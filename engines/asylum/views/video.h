@@ -52,7 +52,7 @@ struct VideoSubtitle {
 
 class VideoPlayer : public EventHandler {
 public:
-	VideoPlayer(AsylumEngine *engine, Audio::Mixer *mixer);
+	VideoPlayer(AsylumEngine *engine);
 	virtual ~VideoPlayer();
 
 	/**

@@ -88,7 +88,7 @@ void SoundBlaster::nextCompositionPos() {
 	_compositionPos = -1;
 }
 
-void SoundBlaster::playComposition(int16 *composition, int16 freqVal,
+void SoundBlaster::playComposition(const int16 *composition, int16 freqVal,
 		SoundDesc *sndDescs, int8 sndCount) {
 
 	_compositionSamples = sndDescs;
@@ -98,7 +98,7 @@ void SoundBlaster::playComposition(int16 *composition, int16 freqVal,
 	do {
 		i++;
 		_composition[i] = composition[i];
-	} while ((i < 50) && (composition[i] != -1));
+	} while ((i < 49) && (composition[i] != -1));
 
 	_compositionPos = -1;
 	nextCompositionPos();

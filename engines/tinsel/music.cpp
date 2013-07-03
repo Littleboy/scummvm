@@ -131,13 +131,11 @@ bool PlayMidiSequence(uint32 dwFileOffset, bool bLoop) {
 	g_currentMidi = dwFileOffset;
 	g_currentLoop = bLoop;
 
-	if (_vm->_config->_musicVolume != 0) {
-		bool mute = false;
-		if (ConfMan.hasKey("mute"))
-			mute = ConfMan.getBool("mute");
+	bool mute = false;
+	if (ConfMan.hasKey("mute"))
+		mute = ConfMan.getBool("mute");
 
-		SetMidiVolume(mute ? 0 : _vm->_config->_musicVolume);
-	}
+	SetMidiVolume(mute ? 0 : _vm->_config->_musicVolume);
 
 	// the index and length of the last tune loaded
 	uint32 dwSeqLen = 0;	// length of the sequence
@@ -189,43 +187,48 @@ bool PlayMidiSequence(uint32 dwFileOffset, bool bLoop) {
 	// move to correct position in the file
 	midiStream.seek(dwFileOffset, SEEK_SET);
 
-	// read the length of the sequence
-	dwSeqLen = midiStream.readUint32LE();
+	if (TinselV1Mac) {
+		// The Macintosh version of DW1 uses raw PCM for music
+		dwSeqLen = midiStream.readUint32BE();
+		_vm->_sound->playDW1MacMusic(midiStream, dwSeqLen);
+	} else {
+		dwSeqLen = midiStream.readUint32LE();
 
-	// make sure buffer is large enough for this sequence
-	assert(dwSeqLen > 0 && dwSeqLen <= g_midiBuffer.size);
+		// make sure buffer is large enough for this sequence
+		assert(dwSeqLen > 0 && dwSeqLen <= g_midiBuffer.size);
 
-	// stop any currently playing tune
-	_vm->_midiMusic->stop();
+		// stop any currently playing tune
+		_vm->_midiMusic->stop();
 
-	// read the sequence. This needs to be read again before playSEQ() is
-	// called even if the music is restarting, as playSEQ() reads the file
-	// name off the buffer itself. However, that function adds SMF headers
-	// to the buffer, thus if it's read again, the SMF headers will be read
-	// and the filename will always be 'MThd'.
-	if (midiStream.read(g_midiBuffer.pDat, dwSeqLen) != dwSeqLen)
-		error(FILE_IS_CORRUPT, MIDI_FILE);
+		// read the sequence. This needs to be read again before playSEQ() is
+		// called even if the music is restarting, as playSEQ() reads the file
+		// name off the buffer itself. However, that function adds SMF headers
+		// to the buffer, thus if it's read again, the SMF headers will be read
+		// and the filename will always be 'MThd'.
+		if (midiStream.read(g_midiBuffer.pDat, dwSeqLen) != dwSeqLen)
+			error(FILE_IS_CORRUPT, MIDI_FILE);
 
-	midiStream.close();
+		// WORKAROUND for bug #2820054 "DW1: No intro music at first start on Wii",
+		// which actually affects all ports, since it's specific to the GRA version.
+		//
+		// The GRA version does not seem to set the channel volume at all for the first
+		// intro track, thus we need to do that here. We only initialize the channels
+		// used in that sequence. And we are using 127 as default channel volume.
+		//
+		// Only in the GRA version dwFileOffset can be "38888", just to be sure, we
+		// check for the SCN files feature flag not being set though.
+		if (_vm->getGameID() == GID_DW1 && dwFileOffset == 38888 && !(_vm->getFeatures() & GF_SCNFILES)) {
+			_vm->_midiMusic->send(0x7F07B0 |  3);
+			_vm->_midiMusic->send(0x7F07B0 |  5);
+			_vm->_midiMusic->send(0x7F07B0 |  8);
+			_vm->_midiMusic->send(0x7F07B0 | 10);
+			_vm->_midiMusic->send(0x7F07B0 | 13);
+		}
 
-	// WORKAROUND for bug #2820054 "DW1: No intro music at first start on Wii",
-	// which actually affects all ports, since it's specific to the GRA version.
-	//
-	// The GRA version does not seem to set the channel volume at all for the first
-	// intro track, thus we need to do that here. We only initialize the channels
-	// used in that sequence. And we are using 127 as default channel volume.
-	//
-	// Only in the GRA version dwFileOffset can be "38888", just to be sure, we
-	// check for the SCN files feature flag not being set though.
-	if (_vm->getGameID() == GID_DW1 && dwFileOffset == 38888 && !(_vm->getFeatures() & GF_SCNFILES)) {
-		_vm->_midiMusic->send(0x7F07B0 |  3);
-		_vm->_midiMusic->send(0x7F07B0 |  5);
-		_vm->_midiMusic->send(0x7F07B0 |  8);
-		_vm->_midiMusic->send(0x7F07B0 | 10);
-		_vm->_midiMusic->send(0x7F07B0 | 13);
+		_vm->_midiMusic->playMIDI(dwSeqLen, bLoop);
 	}
 
-	_vm->_midiMusic->playMIDI(dwSeqLen, bLoop);
+	midiStream.close();
 
 	return true;
 }
@@ -270,27 +273,7 @@ int GetMidiVolume() {
  */
 void SetMidiVolume(int vol) {
 	assert(vol >= 0 && vol <= Audio::Mixer::kMaxChannelVolume);
-
-	static int priorVolMusic = 0;	// FIXME: Avoid non-const global vars
-
-	if (vol == 0 && priorVolMusic == 0)	{
-		// Nothing to do
-	} else if (vol == 0 && priorVolMusic != 0) {
-		// Stop current midi sequence
-		StopMidi();
-		_vm->_midiMusic->setVolume(vol);
-	} else if (vol != 0 && priorVolMusic == 0) {
-		// Perhaps restart last midi sequence
-		if (g_currentLoop)
-			PlayMidiSequence(g_currentMidi, true);
-
-		_vm->_midiMusic->setVolume(vol);
-	} else if (vol != 0 && priorVolMusic != 0) {
-		// Alter current volume
-		_vm->_midiMusic->setVolume(vol);
-	}
-
-	priorVolMusic = vol;
+	_vm->_midiMusic->setVolume(vol);
 }
 
 /**
@@ -299,63 +282,89 @@ void SetMidiVolume(int vol) {
 void OpenMidiFiles() {
 	Common::File midiStream;
 
-	// Demo version has no midi file
-	if ((_vm->getFeatures() & GF_DEMO) || (TinselVersion == TINSEL_V2))
-		return;
+	if (TinselV0) {
+		// The early demo version of DW1 doesn't have MIDI
+	} else if (TinselV2) {
+		// DW2 uses a different music mechanism
+	} else if (TinselV1Mac) {
+		// open MIDI sequence file in binary mode
+		if (!midiStream.open(MIDI_FILE))
+			error(CANNOT_FIND_FILE, MIDI_FILE);
 
-	if (g_midiBuffer.pDat)
-		// already allocated
-		return;
+		uint32 curTrack = 1;
+		uint32 songLength = 0;
+		int32 fileSize = midiStream.size();
 
-	// open MIDI sequence file in binary mode
-	if (!midiStream.open(MIDI_FILE))
-		error(CANNOT_FIND_FILE, MIDI_FILE);
+		// Init
+		for (int i = 0; i < ARRAYSIZE(g_midiOffsets); i++)
+			g_midiOffsets[i] = 0;
 
-	// gen length of the largest sequence
-	g_midiBuffer.size = midiStream.readUint32LE();
-	if (midiStream.eos() || midiStream.err())
-		error(FILE_IS_CORRUPT, MIDI_FILE);
+		midiStream.skip(4);	// skip file header
 
-	if (g_midiBuffer.size) {
-		// allocate a buffer big enough for the largest MIDI sequence
-		if ((g_midiBuffer.pDat = (uint8 *)malloc(g_midiBuffer.size)) != NULL) {
-			// clear out the buffer
-			memset(g_midiBuffer.pDat, 0, g_midiBuffer.size);
-//			VMM_lock(midiBuffer.pDat, midiBuffer.size);
-		} else {
-			//mSeqHandle = NULL;
+		while (!midiStream.eos() && !midiStream.err() && midiStream.pos() != fileSize) {
+			assert(curTrack < ARRAYSIZE(g_midiOffsets));
+			g_midiOffsets[curTrack] = midiStream.pos();
+			//debug("%d: %d", curTrack, g_midiOffsets[curTrack]);
+
+			songLength = midiStream.readUint32BE();
+			midiStream.skip(songLength);
+
+			curTrack++;
 		}
+
+		midiStream.close();
+	} else {
+		if (g_midiBuffer.pDat)
+			// already allocated
+			return;
+
+		// open MIDI sequence file in binary mode
+		if (!midiStream.open(MIDI_FILE))
+			error(CANNOT_FIND_FILE, MIDI_FILE);
+
+		// get length of the largest sequence
+		g_midiBuffer.size = midiStream.readUint32LE();
+		if (midiStream.eos() || midiStream.err())
+			error(FILE_IS_CORRUPT, MIDI_FILE);
+
+		if (g_midiBuffer.size) {
+			// allocate a buffer big enough for the largest MIDI sequence
+			if ((g_midiBuffer.pDat = (uint8 *)malloc(g_midiBuffer.size)) != NULL) {
+				// clear out the buffer
+				memset(g_midiBuffer.pDat, 0, g_midiBuffer.size);
+			}
+		}
+
+		// Now scan through the contents of the MIDI file to find the offset
+		// of each individual track, in order to create a mapping from MIDI
+		// offset to track number, for the enhanced MIDI soundtrack.
+		// The first song is always at position 4. The subsequent ones are
+		// calculated dynamically.
+		uint32 curOffset = 4;
+		uint32 curTrack = 0;
+		uint32 songLength = 0;
+
+		// Init
+		for (int i = 0; i < ARRAYSIZE(g_midiOffsets); i++)
+			g_midiOffsets[i] = 0;
+
+		while (!midiStream.eos() && !midiStream.err()) {
+			if (curOffset + (4 * curTrack) >= (uint32)midiStream.size())
+				break;
+
+			assert(curTrack < ARRAYSIZE(g_midiOffsets));
+			g_midiOffsets[curTrack] = curOffset + (4 * curTrack);
+			//debug("%d: %d", curTrack, midiOffsets[curTrack]);
+
+			songLength = midiStream.readUint32LE();
+			curOffset += songLength;
+			midiStream.skip(songLength);
+
+			curTrack++;
+		}
+
+		midiStream.close();
 	}
-
-	// Now scan through the contents of the MIDI file to find the offset
-	// of each individual track, in order to create a mapping from MIDI
-	// offset to track number, for the enhanced MIDI soundtrack.
-	// The first song is always at position 4. The subsequent ones are
-	// calculated dynamically.
-	uint32 curOffset = 4;
-	uint32 curTrack = 0;
-	uint32 songLength = 0;
-
-	// Init
-	for (int i = 0; i < ARRAYSIZE(g_midiOffsets); i++)
-		g_midiOffsets[i] = 0;
-
-	while (!midiStream.eos() && !midiStream.err()) {
-		if (curOffset + (4 * curTrack) >= (uint32)midiStream.size())
-			break;
-
-		assert(curTrack < ARRAYSIZE(g_midiOffsets));
-		g_midiOffsets[curTrack] = curOffset + (4 * curTrack);
-		//debug("%d: %d", curTrack, midiOffsets[curTrack]);
-
-		songLength = midiStream.readUint32LE();
-		curOffset += songLength;
-		midiStream.skip(songLength);
-
-		curTrack++;
-	}
-
-	midiStream.close();
 }
 
 void DeleteMidiBuffer() {
@@ -806,8 +815,8 @@ bool PCMMusicPlayer::getNextChunk() {
 		// Set parameters for this chunk of music
 		id = _scriptNum;
 		while (id--)
-			script = scriptBuffer + READ_LE_UINT32(script);
-		snum = FROM_LE_32(script[_scriptIndex++]);
+			script = scriptBuffer + READ_32(script);
+		snum = FROM_32(script[_scriptIndex++]);
 
 		if (snum == MUSIC_JUMP || snum == MUSIC_END) {
 			// Let usual code sort it out!
@@ -819,11 +828,11 @@ bool PCMMusicPlayer::getNextChunk() {
 
 		musicSegments = (MusicSegment *) LockMem(_hSegment);
 
-		assert(FROM_LE_32(musicSegments[snum].numChannels) == 1);
-		assert(FROM_LE_32(musicSegments[snum].bitsPerSample) == 16);
+		assert(FROM_32(musicSegments[snum].numChannels) == 1);
+		assert(FROM_32(musicSegments[snum].bitsPerSample) == 16);
 
-		sampleOffset = FROM_LE_32(musicSegments[snum].sampleOffset);
-		sampleLength = FROM_LE_32(musicSegments[snum].sampleLength);
+		sampleOffset = FROM_32(musicSegments[snum].sampleOffset);
+		sampleLength = FROM_32(musicSegments[snum].sampleLength);
 		sampleCLength = (((sampleLength + 63) & ~63)*33)/64;
 
 		if (!file.open(_filename))
@@ -861,14 +870,14 @@ bool PCMMusicPlayer::getNextChunk() {
 
 		id = _scriptNum;
 		while (id--)
-			script = scriptBuffer + READ_LE_UINT32(script);
-		snum = FROM_LE_32(script[_scriptIndex]);
+			script = scriptBuffer + READ_32(script);
+		snum = FROM_32(script[_scriptIndex]);
 
 		if (snum == MUSIC_END) {
 			_state = S_END2;
 		} else {
 			if (snum == MUSIC_JUMP)
-				_scriptIndex = FROM_LE_32(script[_scriptIndex+1]);
+				_scriptIndex = FROM_32(script[_scriptIndex+1]);
 
 			_state = _forcePlay ? S_NEW : S_NEXT;
 			_forcePlay = false;
@@ -933,14 +942,12 @@ void RestoreMidiFacts(SCNHANDLE	Midi, bool Loop) {
 	g_currentMidi = Midi;
 	g_currentLoop = Loop;
 
-	if (_vm->_config->_musicVolume != 0 && Loop) {
-		bool mute = false;
-		if (ConfMan.hasKey("mute"))
-			mute = ConfMan.getBool("mute");
+	bool mute = false;
+	if (ConfMan.hasKey("mute"))
+		mute = ConfMan.getBool("mute");
 
-		PlayMidiSequence(g_currentMidi, true);
-		SetMidiVolume(mute ? 0 : _vm->_config->_musicVolume);
-	}
+	PlayMidiSequence(g_currentMidi, true);
+	SetMidiVolume(mute ? 0 : _vm->_config->_musicVolume);
 }
 
 #if 0

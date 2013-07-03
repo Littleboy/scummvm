@@ -23,6 +23,8 @@
 #ifndef GOB_DETECTION_TABLES_FALLBACK_H
 #define GOB_DETECTION_TABLES_FALLBACK_H
 
+// -- Tables for the filename-based fallback --
+
 static const GOBGameDescription fallbackDescs[] = {
 	{ //0
 		{
@@ -30,7 +32,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -44,7 +46,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -58,7 +60,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -86,7 +88,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -100,7 +102,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -114,7 +116,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -128,7 +130,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -142,7 +144,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -156,7 +158,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -184,7 +186,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -198,7 +200,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -212,7 +214,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -226,7 +228,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -240,7 +242,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -254,7 +256,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -268,7 +270,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -282,7 +284,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -296,7 +298,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -310,7 +312,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -324,7 +326,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -338,7 +340,7 @@ static const GOBGameDescription fallbackDescs[] = {
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
 		},
@@ -362,11 +364,25 @@ static const GOBGameDescription fallbackDescs[] = {
 	},
 	{ //24
 		{
+			"onceupon",
+			"unknown",
+			AD_ENTRY1(0, 0),
+			UNK_LANG,
+			kPlatformUnknown,
+			ADGF_NO_FLAGS,
+			GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
+		},
+		kGameTypeOnceUponATime,
+		kFeaturesEGA,
+		0, 0, 0
+	},
+	{ //25
+		{
 			"adi2",
 			"",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -374,13 +390,13 @@ static const GOBGameDescription fallbackDescs[] = {
 		kFeatures640x480,
 		"adi2.stk", 0, 0
 	},
-	{ //25
+	{ //26
 		{
 			"adi4",
 			"",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO3(GUIO_NOSUBTITLES, GUIO_NOSPEECH, GUIO_NOASPECT)
 		},
@@ -388,13 +404,13 @@ static const GOBGameDescription fallbackDescs[] = {
 		kFeatures640x480,
 		"adif41.stk", 0, 0
 	},
-	{ //26
+	{ //27
 		{
 			"coktelplayer",
 			"unknown",
 			AD_ENTRY1(0, 0),
 			UNK_LANG,
-			kPlatformPC,
+			kPlatformDOS,
 			ADGF_NO_FLAGS,
 			GUIO1(GUIO_NOASPECT)
 		},
@@ -430,10 +446,119 @@ static const ADFileBasedFallback fileBased[] = {
 	{ &fallbackDescs[21].desc, { "disk1.stk", "disk2.stk", "disk3.stk", 0 } },
 	{ &fallbackDescs[22].desc, { "intro.stk", "stk2.stk", "stk3.stk", 0 } },
 	{ &fallbackDescs[23].desc, { "intro.stk", "stk2.stk", "stk3.stk", "mod.babayaga", 0 } },
-	{ &fallbackDescs[24].desc, { "adi2.stk", 0 } },
-	{ &fallbackDescs[25].desc, { "adif41.stk", "adim41.stk", 0 } },
-	{ &fallbackDescs[26].desc, { "coktelplayer.scn", 0 } },
+	{ &fallbackDescs[24].desc, { "stk1.stk", "stk2.stk", "stk3.stk", 0 } },
+	{ &fallbackDescs[25].desc, { "adi2.stk", 0 } },
+	{ &fallbackDescs[26].desc, { "adif41.stk", "adim41.stk", 0 } },
+	{ &fallbackDescs[27].desc, { "coktelplayer.scn", 0 } },
 	{ 0, { 0 } }
+};
+
+// -- Tables for detecting the specific Once Upon A Time game --
+
+enum OnceUponATime {
+	kOnceUponATimeInvalid     = -1,
+	kOnceUponATimeAbracadabra =  0,
+	kOnceUponATimeBabaYaga    =  1,
+	kOnceUponATimeMAX
+};
+
+enum OnceUponATimePlatform {
+	kOnceUponATimePlatformInvalid = -1,
+	kOnceUponATimePlatformDOS     =  0,
+	kOnceUponATimePlatformAmiga   =  1,
+	kOnceUponATimePlatformAtariST =  2,
+	kOnceUponATimePlatformMAX
+};
+
+static const GOBGameDescription fallbackOnceUpon[kOnceUponATimeMAX][kOnceUponATimePlatformMAX] = {
+	{ // kOnceUponATimeAbracadabra
+		{ // kOnceUponATimePlatformDOS
+			{
+				"abracadabra",
+				"",
+				AD_ENTRY1(0, 0),
+				UNK_LANG,
+				kPlatformDOS,
+				ADGF_NO_FLAGS,
+				GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
+			},
+			kGameTypeAbracadabra,
+			kFeaturesAdLib | kFeaturesEGA,
+			0, 0, 0
+		},
+		{ // kOnceUponATimePlatformAmiga
+			{
+				"abracadabra",
+				"",
+				AD_ENTRY1(0, 0),
+				UNK_LANG,
+				kPlatformAmiga,
+				ADGF_NO_FLAGS,
+				GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
+			},
+			kGameTypeAbracadabra,
+			kFeaturesEGA,
+			0, 0, 0
+		},
+		{ // kOnceUponATimePlatformAtariST
+			{
+				"abracadabra",
+				"",
+				AD_ENTRY1(0, 0),
+				UNK_LANG,
+				kPlatformAtariST,
+				ADGF_NO_FLAGS,
+				GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
+			},
+			kGameTypeAbracadabra,
+			kFeaturesEGA,
+			0, 0, 0
+		}
+	},
+	{ // kOnceUponATimeBabaYaga
+		{ // kOnceUponATimePlatformDOS
+			{
+				"babayaga",
+				"",
+				AD_ENTRY1(0, 0),
+				UNK_LANG,
+				kPlatformDOS,
+				ADGF_NO_FLAGS,
+				GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
+			},
+			kGameTypeBabaYaga,
+			kFeaturesAdLib | kFeaturesEGA,
+			0, 0, 0
+		},
+		{ // kOnceUponATimePlatformAmiga
+			{
+				"babayaga",
+				"",
+				AD_ENTRY1(0, 0),
+				UNK_LANG,
+				kPlatformAmiga,
+				ADGF_NO_FLAGS,
+				GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
+			},
+			kGameTypeBabaYaga,
+			kFeaturesEGA,
+			0, 0, 0
+		},
+		{ // kOnceUponATimePlatformAtariST
+			{
+				"babayaga",
+				"",
+				AD_ENTRY1(0, 0),
+				UNK_LANG,
+				kPlatformAtariST,
+				ADGF_NO_FLAGS,
+				GUIO2(GUIO_NOSUBTITLES, GUIO_NOSPEECH)
+			},
+			kGameTypeBabaYaga,
+			kFeaturesEGA,
+			0, 0, 0
+		}
+	}
 };
 
 #endif // GOB_DETECTION_TABLES_FALLBACK_H

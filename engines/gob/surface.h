@@ -26,9 +26,6 @@
 #include "common/scummsys.h"
 #include "common/ptr.h"
 #include "common/rational.h"
-#include "common/iff_container.h"
-
-#include "graphics/iff.h"
 
 namespace Common {
 class SeekableReadStream;
@@ -39,35 +36,10 @@ namespace Gob {
 enum ImageType {
 	kImageTypeNone = -1,
 	kImageTypeTGA  =  0,
-	kImageTypeLBM,
+	kImageTypeIFF,
 	kImageTypeBRC,
 	kImageTypeBMP,
 	kImageTypeJPEG
-};
-
-class LBMLoader {
-public:
-	LBMLoader(Common::SeekableReadStream &stream);
-
-	bool loadHeader (Graphics::BMHD &header);
-	bool loadPalette(byte *palette);
-	bool loadImage  (byte *image);
-
-private:
-	Common::IFFParser _parser;
-
-	bool _hasHeader;
-
-	Graphics::ILBMDecoder _decoder;
-
-	byte *_palette;
-	byte *_image;
-
-	bool callbackHeader (Common::IFFChunk &chunk);
-	bool callbackPalette(Common::IFFChunk &chunk);
-	bool callbackImage  (Common::IFFChunk &chunk);
-
-	bool readHeader();
 };
 
 /** An iterator over a surface's image data, automatically handles different color depths. */
@@ -156,6 +128,8 @@ public:
 	void shadeRect(uint16 left, uint16 top, uint16 right, uint16 bottom,
 			uint32 color, uint8 strength);
 
+	void recolor(uint8 from, uint8 to);
+
 	void putPixel(uint16 x, uint16 y, uint32 color);
 	void drawLine(uint16 x0, uint16 y0, uint16 x1, uint16 y1, uint32 color);
 	void drawRect(uint16 left, uint16 top, uint16 right, uint16 bottom, uint32 color);
@@ -180,7 +154,7 @@ private:
 	                         uint16 dWidth, uint16 dHeight, uint16 sWidth, uint16 sHeight);
 
 	bool loadTGA (Common::SeekableReadStream &stream);
-	bool loadLBM (Common::SeekableReadStream &stream);
+	bool loadIFF (Common::SeekableReadStream &stream);
 	bool loadBRC (Common::SeekableReadStream &stream);
 	bool loadBMP (Common::SeekableReadStream &stream);
 	bool loadJPEG(Common::SeekableReadStream &stream);

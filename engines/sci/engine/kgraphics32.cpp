@@ -39,6 +39,7 @@
 #include "sci/graphics/cache.h"
 #include "sci/graphics/compare.h"
 #include "sci/graphics/controls16.h"
+#include "sci/graphics/coordadjuster.h"
 #include "sci/graphics/cursor.h"
 #include "sci/graphics/palette.h"
 #include "sci/graphics/paint16.h"
@@ -171,8 +172,13 @@ reg_t kCreateTextBitmap(EngineState *s, int argc, reg_t *argv) {
 		debugC(kDebugLevelStrings, "kCreateTextBitmap case 0 (%04x:%04x, %04x:%04x, %04x:%04x)",
 				PRINT_REG(argv[1]), PRINT_REG(argv[2]), PRINT_REG(argv[3]));
 		debugC(kDebugLevelStrings, "%s", text.c_str());
-		uint16 maxWidth = argv[1].toUint16();	// nsRight - nsLeft + 1
-		uint16 maxHeight = argv[2].toUint16();	// nsBottom - nsTop + 1
+		int16 maxWidth = argv[1].toUint16();
+		int16 maxHeight = argv[2].toUint16();
+		g_sci->_gfxCoordAdjuster->fromScriptToDisplay(maxHeight, maxWidth);
+		// These values can be larger than the screen in the SQ6 demo, room 100
+		// TODO: Find out why. For now, don't show any text in that room.
+		if (g_sci->getGameId() == GID_SQ6 && g_sci->isDemo() && s->currentRoomNumber() == 100)
+			return NULL_REG;
 		return g_sci->_gfxText32->createTextBitmap(object, maxWidth, maxHeight);
 	}
 	case 1: {
@@ -317,19 +323,29 @@ reg_t kScrollWindow(EngineState *s, int argc, reg_t *argv) {
 	uint16 op = argv[0].toUint16();
 	switch (op) {
 	case 0:	// Init
+		// TODO: Init reads the nsLeft, nsTop, nsRight, nsBottom,
+		//       borderColor, fore, back, mode, font, plane selectors
+		//       from the window in argv[1].
 		g_sci->_gfxFrameout->initScrollText(argv[2].toUint16());	// maxItems
 		g_sci->_gfxFrameout->clearScrollTexts();
 		return argv[1];	// kWindow
 	case 1: // Show message, called by ScrollableWindow::addString
 	case 14: // Modify message, called by ScrollableWindow::modifyString
-		// 5 or 6 parameters
-		// Seems to be called with 5 parameters when the narrator speaks, and
-		// with 6 when Roger speaks
+		// TODO: The parameters in Modify are shifted by one: the first
+		//       argument is the handle of the text to modify. The others
+		//       are as Add.
 		{
 		Common::String text = s->_segMan->getString(argv[2]);
-		uint16 x = 0;//argv[3].toUint16();	// TODO: can't be x (values are all wrong)
-		uint16 y = 0;//argv[4].toUint16();	// TODO: can't be y (values are all wrong)
-		// TODO: argv[5] is an optional unknown parameter (an integer set to 0)
+		uint16 x = 0;
+		uint16 y = 0;
+		// TODO: argv[3] is font
+		// TODO: argv[4] is color
+		// TODO: argv[5] is alignment (0 = left, 1 = center, 2 = right)
+		//       font,color,alignment may also be -1. (Maybe same as previous?)
+		// TODO: argv[6] is an optional bool, defaulting to true if not present.
+		//       If true, the old contents are scrolled out of view.
+		// TODO: Return a handle of the inserted text. (Used for modify/insert)
+		//       This handle looks like it should also be usable by kString.
 		g_sci->_gfxFrameout->addScrollTextEntry(text, kWindow, x, y, (op == 14));
 		}
 		break;
@@ -357,21 +373,27 @@ reg_t kScrollWindow(EngineState *s, int argc, reg_t *argv) {
 		g_sci->_gfxFrameout->lastScrollText();
 		break;
 	case 9: // Resize, called by ScrollableWindow::resize and ScrollerWindow::resize
-		// TODO
+		// TODO: This reads the nsLeft, nsTop, nsRight, nsBottom
+		//       selectors from the SCI object passed in argv[2].
 		kStub(s, argc, argv);
 		break;
 	case 10: // Where, called by ScrollableWindow::where
-		// TODO
-		// argv[2] is an unknown integer
-		kStub(s, argc, argv);
+		// TODO:
+		// Gives the current relative scroll location as a fraction
+		// with argv[2] as the denominator. (Return value is the numerator.)
+		// Silenced the warnings because of the high amount of console spam
+		//kStub(s, argc, argv);
 		break;
 	case 11: // Go, called by ScrollableWindow::scrollTo
-		// 2 extra parameters here
-		// TODO
+		// TODO:
+		// Two arguments provide a fraction: argv[2] is num., argv[3] is denom.
+		// Scrolls to the relative location given by the fraction.
 		kStub(s, argc, argv);
 		break;
 	case 12: // Insert, called by ScrollableWindow::insertString
-		// 3 extra parameters here
+		// 5 extra parameters here:
+		// handle of insert location (new string takes that position).
+		// text, font, color, alignment
 		// TODO
 		kStub(s, argc, argv);
 		break;
@@ -661,6 +683,22 @@ reg_t kSetScroll(EngineState *s, int argc, reg_t *argv) {
 	return kStub(s, argc, argv);
 }
 
+reg_t kPalVaryUnknown(EngineState *s, int argc, reg_t *argv) {
+	// TODO: Unknown (seems to be SCI32 exclusive)
+	return kStub(s, argc, argv);
+}
+
+reg_t kPalVaryUnknown2(EngineState *s, int argc, reg_t *argv) {
+	// TODO: Unknown (seems to be SCI32 exclusive)
+	// It seems to be related to the day/night palette effects in QFG4, and
+	// accepts a palette resource ID. It is triggered right when the night
+	// effect is initially applied (when exiting the caves).
+	// In QFG4, there are two scene palettes: 790 for night, and 791 for day.
+	// Initially, the game starts at night time, but this is called with the
+	// ID of the day time palette (i.e. 791).
+	return kStub(s, argc, argv);
+}
+
 reg_t kPalCycle(EngineState *s, int argc, reg_t *argv) {
 	// Examples: GK1 room 480 (Bayou ritual), LSL6 room 100 (title screen)
 
@@ -721,6 +759,79 @@ reg_t kPalCycle(EngineState *s, int argc, reg_t *argv) {
 	default:
 		// TODO
 		kStub(s, argc, argv);
+		break;
+	}
+
+	return s->r_acc;
+}
+
+reg_t kRemapColors32(EngineState *s, int argc, reg_t *argv) {
+	uint16 operation = argv[0].toUint16();
+
+	switch (operation) {
+	case 0:	{ // turn remapping off
+		// WORKAROUND: Game scripts in QFG4 erroneously turn remapping off in room
+		// 140 (the character point allocation screen) and never turn it back on,
+		// even if it's clearly used in that screen.
+		if (g_sci->getGameId() == GID_QFG4 && s->currentRoomNumber() == 140)
+			return s->r_acc;
+
+		int16 base = (argc >= 2) ? argv[1].toSint16() : 0;
+		if (base > 0)
+			warning("kRemapColors(0) called with base %d", base);
+		g_sci->_gfxPalette->resetRemapping();
+		}
+		break;
+	case 1:	{ // remap by range
+		uint16 color = argv[1].toUint16();
+		uint16 from = argv[2].toUint16();
+		uint16 to = argv[3].toUint16();
+		uint16 base = argv[4].toUint16();
+		uint16 unk5 = (argc >= 6) ? argv[5].toUint16() : 0;
+		if (unk5 > 0)
+			warning("kRemapColors(1) called with 6 parameters, unknown parameter is %d", unk5);
+		g_sci->_gfxPalette->setRemappingRange(color, from, to, base);
+		}
+		break;
+	case 2:	{ // remap by percent
+		uint16 color = argv[1].toUint16();
+		uint16 percent = argv[2].toUint16(); // 0 - 100
+		if (argc >= 4)
+			warning("RemapByPercent called with 4 parameters, unknown parameter is %d", argv[3].toUint16());
+		g_sci->_gfxPalette->setRemappingPercent(color, percent);
+		}
+		break;
+	case 3:	{ // remap to gray
+		// Example call: QFG4 room 490 (Baba Yaga's hut) - params are color 253, 75% and 0.
+		// In this room, it's used for the cloud before Baba Yaga appears.
+		int16 color = argv[1].toSint16();
+		int16 percent = argv[2].toSint16(); // 0 - 100
+		if (argc >= 4)
+			warning("RemapToGray called with 4 parameters, unknown parameter is %d", argv[3].toUint16());
+		g_sci->_gfxPalette->setRemappingPercentGray(color, percent);
+		}
+		break;
+	case 4:	{ // remap to percent gray
+		// Example call: QFG4 rooms 530/535 (swamp) - params are 253, 100%, 200
+		int16 color = argv[1].toSint16();
+		int16 percent = argv[2].toSint16(); // 0 - 100
+		// argv[3] is unknown (a number, e.g. 200) - start color, perhaps?
+		if (argc >= 5)
+			warning("RemapToGrayPercent called with 5 parameters, unknown parameter is %d", argv[4].toUint16());
+		g_sci->_gfxPalette->setRemappingPercentGray(color, percent);
+		}
+		break;
+	case 5:	{ // don't map to range
+		//int16 mapping = argv[1].toSint16();
+		uint16 intensity = argv[2].toUint16();
+		// HACK for PQ4
+		if (g_sci->getGameId() == GID_PQ4)
+			g_sci->_gfxPalette->kernelSetIntensity(0, 255, intensity, true);
+
+		kStub(s, argc, argv);
+		}
+		break;
+	default:
 		break;
 	}
 

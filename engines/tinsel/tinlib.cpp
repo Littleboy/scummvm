@@ -1151,14 +1151,14 @@ static void FaceTag(int actor, HPOLYGON hp) {
  * FadeIn
  */
 static void FadeIn() {
-	FadeInMedium(NULL);
+	FadeInMedium();
 }
 
 /**
  * FadeOut
  */
 static void FadeOut() {
-	FadeOutMedium(NULL);
+	FadeOutMedium();
 }
 
 /**
@@ -1198,7 +1198,6 @@ static void Ghost(int actor, int tColor, int tPalOffset) {
 	SetSysVar(ISV_GHOST_ACTOR, actor);
 	SetSysVar(ISV_GHOST_COLOR,  tColor);
 	SetSysVar(ISV_GHOST_BASE, tPalOffset);
-	CreateGhostPalette(BgPal());
 }
 
 /**
@@ -1625,10 +1624,6 @@ static void Play(CORO_PARAM, SCNHANDLE hFilm, int x, int y, bool bComplete, int 
  * Play a midi file.
  */
 static void PlayMidi(CORO_PARAM, SCNHANDLE hMidi, int loop, bool complete) {
-	// FIXME: This is a workaround for the FIXME below
-	if (GetMidiVolume() == 0)
-		return;
-
 	CORO_BEGIN_CONTEXT;
 	CORO_END_CONTEXT(_ctx);
 
@@ -1637,18 +1632,13 @@ static void PlayMidi(CORO_PARAM, SCNHANDLE hMidi, int loop, bool complete) {
 
 	PlayMidiSequence(hMidi, loop == MIDI_LOOP);
 
-	// FIXME: The following check messes up the script arguments when
-	// entering the secret door in the bookshelf in the library,
-	// leading to a crash, when the music volume is set to 0 (MidiPlaying()
-	// always false then).
-	//
-	// Why exactly this happens is unclear. An analysis of the involved
-	// script(s) might reveal more.
-	//
-	// Note: This check&sleep was added in DW v2. It was most likely added
-	// to ensure that the MIDI song started playing before the next opcode
+	// This check&sleep was added in DW v2. It was most likely added to
+	// ensure that the MIDI song started playing before the next opcode
 	// is executed.
-	if (!MidiPlaying())
+	// In DW1, it messes up the script arguments when entering the secret
+	// door in the bookshelf in the library, leading to a crash, when the
+	// music volume is set to 0.
+	if (!MidiPlaying() && TinselV2)
 		CORO_SLEEP(1);
 
 	if (complete) {
@@ -3412,7 +3402,7 @@ static void TalkOrSay(CORO_PARAM, SPEECH_TYPE speechType, SCNHANDLE hText, int x
 			// Kick off the sample now (perhaps with a delay)
 			if (g_bNoPause)
 				g_bNoPause = false;
-			else if (!IsDemo)
+			else if (!TinselV2Demo)
 				CORO_SLEEP(SysVar(SV_SPEECHDELAY));
 
 			//SamplePlay(VOICE, hText, _ctx->sub, false, -1, -1, PRIORITY_TALK);
@@ -3693,7 +3683,7 @@ static void TranslucentIndex(unsigned index) {
 }
 
 /**
- * Play a sample.
+ * Play a sample (DW1 only).
  */
 static void TryPlaySample(CORO_PARAM, int sample, bool bComplete, bool escOn, int myEscape) {
 	CORO_BEGIN_CONTEXT;
@@ -4244,7 +4234,7 @@ int CallLibraryRoutine(CORO_PARAM, int operand, int32 *pp, const INT_CONTEXT *pi
 	int libCode;
 	if (TinselV0) libCode = DW1DEMO_CODES[operand];
 	else if (!TinselV2) libCode = DW1_CODES[operand];
-	else if (_vm->getFeatures() & GF_DEMO) libCode = DW2DEMO_CODES[operand];
+	else if (TinselV2Demo) libCode = DW2DEMO_CODES[operand];
 	else libCode = DW2_CODES[operand];
 
 	debug(7, "CallLibraryRoutine op %d (escOn %d, myEscape %d)", operand, pic->escOn, pic->myEscape);

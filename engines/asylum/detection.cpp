@@ -45,7 +45,7 @@ static const ADGameDescription gameDescriptions[] = {
 			{0,0,0,0}
 		},
 		Common::EN_ANY,
-		Common::kPlatformPC,
+		Common::kPlatformUnknown,
 		ADGF_DEMO|ADGF_UNSTABLE,
 		GUIO1(GUIO_NONE)
 	},
@@ -59,7 +59,7 @@ static const ADGameDescription gameDescriptions[] = {
 			{0,0,0,0}
 		},
 		Common::EN_ANY,
-		Common::kPlatformPC,
+		Common::kPlatformUnknown,
 		ADGF_UNSTABLE,
 		GUIO1(GUIO_NONE)
 	},
@@ -73,7 +73,7 @@ static const ADGameDescription gameDescriptions[] = {
 			{0,0,0,0}
 		},
 		Common::EN_ANY,
-		Common::kPlatformPC,
+		Common::kPlatformUnknown,
 		ADGF_UNSTABLE,
 		GUIO1(GUIO_NONE)
 	},
@@ -87,7 +87,7 @@ static const ADGameDescription gameDescriptions[] = {
 			{0,0,0,0}
 		},
 		Common::EN_ANY,
-		Common::kPlatformPC,
+		Common::kPlatformUnknown,
 		ADGF_UNSTABLE,
 		GUIO1(GUIO_NONE)
 	},
@@ -101,7 +101,7 @@ static const ADGameDescription gameDescriptions[] = {
 			{0,0,0,0}
 		},
 		Common::FR_FRA,
-		Common::kPlatformPC,
+		Common::kPlatformUnknown,
 		ADGF_UNSTABLE,
 		GUIO1(GUIO_NONE)
 	},
@@ -115,7 +115,7 @@ static const ADGameDescription gameDescriptions[] = {
 			{0,0,0,0}
 		},
 		Common::RU_RUS,
-		Common::kPlatformPC,
+		Common::kPlatformUnknown,
 		ADGF_UNSTABLE,
 		GUIO1(GUIO_NONE)
 	},
@@ -152,8 +152,8 @@ public:
 
 protected:
 	virtual bool createInstance(OSystem *syst, Engine **engine, const ADGameDescription *desc) const;
-	virtual const ADGameDescription *fallbackDetect(const FileMap &allFiles, const Common::FSList &) const {
-		return detectGameFilebased(allFiles, Asylum::fileBasedFallback);
+	virtual const ADGameDescription *fallbackDetect(const FileMap &allFiles, const Common::FSList &fslist) const {
+		return detectGameFilebased(allFiles, fslist, Asylum::fileBasedFallback);
 	}
 };
 

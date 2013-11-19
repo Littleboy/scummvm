@@ -36,6 +36,9 @@ SegManager::SegManager(ResourceManager *resMan) {
 	_nodesSegId = 0;
 	_hunksSegId = 0;
 
+	_saveDirPtr = NULL_REG;
+	_parserPtr = NULL_REG;
+
 #ifdef ENABLE_SCI32
 	_arraysSegId = 0;
 	_stringSegId = 0;
@@ -259,8 +262,14 @@ const char *SegManager::getObjectName(reg_t pos) {
 	const char *name = 0;
 	if (nameReg.getSegment())
 		name  = derefString(nameReg);
-	if (!name)
-		return "<invalid name>";
+	if (!name) {
+		// Crazy Nick Laura Bow is missing some object names needed for the static
+		// selector vocabulary
+		if (g_sci->getGameId() == GID_CNICK_LAURABOW && pos == make_reg(1, 0x2267))
+			return "Character";
+		else
+			return "<invalid name>";
+	}
 
 	return name;
 }
@@ -825,7 +834,7 @@ byte *SegManager::allocDynmem(int size, const char *descr, reg_t *addr) {
 }
 
 bool SegManager::freeDynmem(reg_t addr) {
-	if (addr.getSegment() < 1 || addr.getSegment() >= _heap.size() || 
+	if (addr.getSegment() < 1 || addr.getSegment() >= _heap.size() ||
 		!_heap[addr.getSegment()] || _heap[addr.getSegment()]->getType() != SEG_TYPE_DYNMEM)
 		return false; // error
 

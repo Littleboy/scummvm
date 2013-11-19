@@ -63,13 +63,13 @@ int16 Text::count() {
 
 	Common::String line;
 	char tmpStr[kLineMax + 1];
-	
+
 	int counter = 0;
 
 	for (line = tf.readLine(); !tf.eos(); line = tf.readLine()) {
 		char *s;
-
-		strcpy(tmpStr, line.c_str());
+		assert(line.size() <= 513);
+		Common::strlcpy(tmpStr, line.c_str(), sizeof(tmpStr));
 		if ((s = strtok(tmpStr, " =,;/\t\n")) == NULL)
 			continue;
 		if (!Common::isDigit(*s))
@@ -101,8 +101,7 @@ void Text::load() {
 	for (idx = 0, line = tf.readLine(); !tf.eos(); line = tf.readLine()) {
 		int n = line.size();
 		char *s;
-
-		strcpy(tmpStr, line.c_str());
+		Common::strlcpy(tmpStr, line.c_str(), sizeof(tmpStr));
 		if ((s = strtok(tmpStr, " =,;/\t\n")) == NULL)
 			continue;
 		if (!Common::isDigit(*s))

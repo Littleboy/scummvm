@@ -44,6 +44,9 @@ public:
 
 	/**
 	 * Load an image from the specified stream
+	 * 
+	 * loadStream() should implicitly call destroy() to free the memory
+	 * of the last loadStream() call.
 	 *
 	 * @param stream the input stream
 	 * @return whether loading the file succeeded
@@ -54,6 +57,9 @@ public:
 
 	/**
 	 * Destroy this decoder's surface and palette
+	 *
+	 * This should be called by a loadStream() implementation as well
+	 * as the destructor.
 	 */
 	virtual void destroy() = 0;
 
@@ -75,9 +81,17 @@ public:
 	 * until destroy() or loadStream() is called, or until this ImageDecoder's
 	 * destructor is called.
 	 *
-	 * @return the decoded palette, or 0 if no palette is present
+	 * The palette's format is the same as PaletteManager's palette
+	 * (interleaved RGB values).
+	 *
+	 * @return the decoded palette, or undefined if no palette is present
 	 */
 	virtual const byte *getPalette() const { return 0; }
+
+	/**
+	 * Query if the decoded image has a palette.
+	 */
+	virtual bool hasPalette() const { return getPaletteColorCount() != 0; }
 
 	/** Return the starting index of the palette. */
 	virtual byte getPaletteStartIndex() const { return 0; }

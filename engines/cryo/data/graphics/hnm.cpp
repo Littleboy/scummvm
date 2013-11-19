@@ -27,6 +27,7 @@
 #include "common/file.h"
 #include "common/rect.h"
 #include "common/stream.h"
+#include "common/util.h"
 
 namespace Cryo {
 
@@ -203,6 +204,8 @@ void Hnm::decodeIX() {
 }
 
 void Hnm::close() {
+	Video::VideoDecoder::close();
+
 	if (!_fileStream)
 		return;
 
@@ -213,12 +216,10 @@ void Hnm::close() {
 		delete _surface;
 		_surface = NULL;
 	}
-
-	reset();
 }
 
 uint32 Hnm::getTimeToNextFrame() const {
-	if (endOfVideo() || _curFrame < 0)
+	if (endOfVideo() || getCurFrame() < 0)
 		return 0;
 
 	error("[Hnm::getTimeToNextFrame] Not implemented");
@@ -239,7 +240,7 @@ Common::String Hnm::twoCC2str(uint16 tag) {
 
 	// Replace non-printable chars by dot
 	for (int i = 0; i < 2; ++i) {
-		if (!isprint((unsigned char)str[i]))
+		if (!Common::isPrint((unsigned char) str[i]))
 			str[i] = '.';
 	}
 

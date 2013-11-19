@@ -120,7 +120,7 @@ class MainMenuInputState_BR : public MenuInputState {
 		memset(data, 0, MENUITEM_WIDTH * MENUITEM_HEIGHT * 2);
 
 		// build first frame to be displayed when item is not selected
-		if (_vm->getPlatform() == Common::kPlatformPC) {
+		if (_vm->getPlatform() == Common::kPlatformDOS) {
 			_vm->_menuFont->setColor(0);
 		} else {
 			_vm->_menuFont->setColor(23);
@@ -196,6 +196,11 @@ class MainMenuInputState_BR : public MenuInputState {
 public:
 	MainMenuInputState_BR(Parallaction_br *vm, MenuInputHelper *helper) : MenuInputState("mainmenu", helper), _vm(vm)  {
 	    memset(_lines, 0, sizeof(_lines));
+
+		_menuStrings = 0;
+		_options = 0;
+		_availItems = 0;
+		_selection = 0;
 	}
 
 	~MainMenuInputState_BR() {
@@ -238,7 +243,7 @@ public:
 	virtual void enter() {
 		_vm->_gfx->clearScreen();
 		int x = 0, y = 0, i = 0;
-		if (_vm->getPlatform() == Common::kPlatformPC) {
+		if (_vm->getPlatform() == Common::kPlatformDOS) {
 			x = 20;
 			y = 50;
 		}

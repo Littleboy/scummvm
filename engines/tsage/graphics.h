@@ -88,6 +88,7 @@ private:
 public:
 	Common::Point _centroid;
 	int _transColor;
+	Rect _clipRect;
 public:
 	GfxSurface();
 	GfxSurface(const GfxSurface &s);
@@ -100,10 +101,12 @@ public:
 	void unlockSurface();
 	void synchronize(Serializer &s);
 	void create(int width, int height);
+	void clear();
 	void setBounds(const Rect &bounds) { _bounds = bounds; }
 	const Rect &getBounds() const { return _bounds; }
 
-	void copyFrom(GfxSurface &src, Rect srcBounds, Rect destBounds, Region *priorityRegion = NULL);
+	void copyFrom(GfxSurface &src, Rect srcBounds, Rect destBounds,
+		Region *priorityRegion = NULL, const byte *shadowMap = NULL);
 	void copyFrom(GfxSurface &src, Rect destBounds, Region *priorityRegion = NULL) {
 		copyFrom(src, src.getBounds(), destBounds, priorityRegion);
 	}
@@ -162,7 +165,6 @@ public:
 
 class GfxFontBackup {
 private:
-	GfxSurface *_surface;
 	Common::Point _edgeSize;
 	Common::Point _position;
 	GfxColors _colors;
@@ -303,6 +305,7 @@ public:
 	}
 	void copyFrom(GfxSurface &src, Rect destBounds, Region *priorityRegion = NULL);
 	void copyFrom(GfxSurface &src, int destX, int destY);
+	void copyFrom(GfxSurface &src, const Rect &srcBounds, const Rect &destBounds);
 
 	GfxSurface &getSurface() {
 		_surface.setBounds(_bounds);
@@ -339,7 +342,7 @@ public:
 	static void setPalette();
 };
 
-GfxSurface *Surface_getArea(GfxSurface &src, const Rect &bounds);
+GfxSurface *surfaceGetArea(GfxSurface &src, const Rect &bounds);
 
 GfxSurface surfaceFromRes(const byte *imgData);
 GfxSurface surfaceFromRes(int resNum, int rlbNum, int subNum);

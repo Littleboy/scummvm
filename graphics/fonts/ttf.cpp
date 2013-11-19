@@ -101,7 +101,7 @@ public:
 	TTFFont();
 	virtual ~TTFFont();
 
-	bool load(Common::SeekableReadStream &stream, int size, bool monochrome, const uint32 *mapping);
+	bool load(Common::SeekableReadStream &stream, int size, uint dpi, bool monochrome, const uint32 *mapping);
 
 	virtual int getFontHeight() const;
 
@@ -157,7 +157,7 @@ TTFFont::~TTFFont() {
 	}
 }
 
-bool TTFFont::load(Common::SeekableReadStream &stream, int size, bool monochrome, const uint32 *mapping) {
+bool TTFFont::load(Common::SeekableReadStream &stream, int size, uint dpi, bool monochrome, const uint32 *mapping) {
 	if (!g_ttf.isInitialized())
 		return false;
 
@@ -195,7 +195,7 @@ bool TTFFont::load(Common::SeekableReadStream &stream, int size, bool monochrome
 	// Check whether we have kerning support
 	_hasKerning = (FT_HAS_KERNING(_face) != 0);
 
-	if (FT_Set_Char_Size(_face, 0, size * 64, 0, 0)) {
+	if (FT_Set_Char_Size(_face, 0, size * 64, dpi, dpi)) {
 		delete[] _ttfFile;
 		_ttfFile = 0;
 
@@ -322,7 +322,7 @@ void TTFFont::drawChar(Surface *dst, byte chr, int x, int y, uint32 color) const
 	int w = glyph.image.w;
 	int h = glyph.image.h;
 
-	const uint8 *srcPos = (const uint8 *)glyph.image.getBasePtr(0, 0);
+	const uint8 *srcPos = (const uint8 *)glyph.image.getPixels();
 
 	// Make sure we are not drawing outside the screen bounds
 	if (x < 0) {
@@ -422,7 +422,7 @@ bool TTFFont::cacheGlyph(Glyph &glyph, FT_UInt &slot, uint chr) {
 		srcPitch = -srcPitch;
 	}
 
-	uint8 *dst = (uint8 *)glyph.image.getBasePtr(0, 0);
+	uint8 *dst = (uint8 *)glyph.image.getPixels();
 	memset(dst, 0, glyph.image.h * glyph.image.pitch);
 
 	switch (bitmap.pixel_mode) {
@@ -462,10 +462,10 @@ bool TTFFont::cacheGlyph(Glyph &glyph, FT_UInt &slot, uint chr) {
 	return true;
 }
 
-Font *loadTTFFont(Common::SeekableReadStream &stream, int size, bool monochrome, const uint32 *mapping) {
+Font *loadTTFFont(Common::SeekableReadStream &stream, int size, uint dpi, bool monochrome, const uint32 *mapping) {
 	TTFFont *font = new TTFFont();
 
-	if (!font->load(stream, size, monochrome, mapping)) {
+	if (!font->load(stream, size, dpi, monochrome, mapping)) {
 		delete font;
 		return 0;
 	}

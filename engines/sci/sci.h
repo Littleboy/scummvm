@@ -82,34 +82,36 @@ class GfxFrameout;
 
 // our engine debug levels
 enum kDebugLevels {
-	kDebugLevelError      = 1 << 0,
-	kDebugLevelNodes      = 1 << 1,
-	kDebugLevelGraphics   = 1 << 2,
-	kDebugLevelStrings    = 1 << 3,
-	kDebugLevelMemory     = 1 << 4,
-	kDebugLevelFuncCheck  = 1 << 5,
-	kDebugLevelBresen     = 1 << 6,
-	kDebugLevelSound      = 1 << 7,
-	kDebugLevelBaseSetter = 1 << 8,
-	kDebugLevelParser     = 1 << 9,
-	kDebugLevelSaid       = 1 << 10,
-	kDebugLevelFile       = 1 << 11,
-	kDebugLevelTime       = 1 << 12,
-	kDebugLevelRoom       = 1 << 13,
-	kDebugLevelAvoidPath  = 1 << 14,
-	kDebugLevelDclInflate = 1 << 15,
-	kDebugLevelVM         = 1 << 16,
-	kDebugLevelScripts    = 1 << 17,
-	kDebugLevelGC         = 1 << 18,
-	kDebugLevelResMan     = 1 << 19,
-	kDebugLevelOnStartup  = 1 << 20,
-	kDebugLevelDebugMode  = 1 << 21
+	kDebugLevelError         = 1 << 0,
+	kDebugLevelNodes         = 1 << 1,
+	kDebugLevelGraphics      = 1 << 2,
+	kDebugLevelStrings       = 1 << 3,
+	kDebugLevelMemory        = 1 << 4,
+	kDebugLevelFuncCheck     = 1 << 5,
+	kDebugLevelBresen        = 1 << 6,
+	kDebugLevelSound         = 1 << 7,
+	kDebugLevelBaseSetter    = 1 << 8,
+	kDebugLevelParser        = 1 << 9,
+	kDebugLevelSaid          = 1 << 10,
+	kDebugLevelFile          = 1 << 11,
+	kDebugLevelTime          = 1 << 12,
+	kDebugLevelRoom          = 1 << 13,
+	kDebugLevelAvoidPath     = 1 << 14,
+	kDebugLevelDclInflate    = 1 << 15,
+	kDebugLevelVM            = 1 << 16,
+	kDebugLevelScripts       = 1 << 17,
+	kDebugLevelGC            = 1 << 18,
+	kDebugLevelResMan        = 1 << 19,
+	kDebugLevelOnStartup     = 1 << 20,
+	kDebugLevelDebugMode     = 1 << 21,
+	kDebugLevelScriptPatcher = 1 << 22
 };
 
 enum SciGameId {
 	GID_ASTROCHICKEN,
 	GID_CAMELOT,
 	GID_CASTLEBRAIN,
+	GID_CHEST,
 	GID_CHRISTMAS1988,
 	GID_CHRISTMAS1990,
 	GID_CHRISTMAS1992,
@@ -137,6 +139,7 @@ enum SciGameId {
 	GID_KQ5,
 	GID_KQ6,
 	GID_KQ7,
+	GID_KQUESTIONS,
 	GID_LAURABOW,
 	GID_LAURABOW2,
 	GID_LIGHTHOUSE,
@@ -228,7 +231,28 @@ public:
 	bool canLoadGameStateCurrently();
 	bool canSaveGameStateCurrently();
 	void syncSoundSettings();
+
+	/**
+	 * Syncs the audio options of the ScummVM launcher (speech, subtitles or
+	 * both) with the in-game audio options of certain CD game versions. For
+	 * some games, this allows simultaneous playing of speech and subtitles,
+	 * even if the original games didn't support this feature.
+	 *
+	 * SCI1.1 games which support simultaneous speech and subtitles:
+	 * - EcoQuest 1 CD
+	 * - Leisure Suit Larry 6 CD
+	 * SCI1.1 games which don't support simultaneous speech and subtitles,
+	 * and we add this functionality in ScummVM:
+	 * - Space Quest 4 CD
+	 * - Freddy Pharkas CD
+	 * SCI1.1 games which don't support simultaneous speech and subtitles,
+	 * and we haven't added any extra functionality in ScummVM because extra
+	 * script patches are needed:
+	 * - Laura Bow 2 CD
+	 * - King's Quest 6 CD
+	 */
 	void syncIngameAudioOptions();
+	void updateScummVMAudioOptions();
 
 	const SciGameId &getGameId() const { return _gameId; }
 	const char *getGameIdStr() const;

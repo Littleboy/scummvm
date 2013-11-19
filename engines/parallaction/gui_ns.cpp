@@ -117,6 +117,7 @@ public:
 		_allowChoice = false;
 		_nextState = "selectgame";
 		_label = 0;
+		_blocks = 0;
 
 		_dosLanguageSelectBlocks[0] = Common::Rect(  80, 110, 128, 180 );	// Italian
 		_dosLanguageSelectBlocks[1] = Common::Rect( 129,  85, 177, 155 );	// French
@@ -787,7 +788,7 @@ public:
 		}
 
 		destroyLabels();
-		_engineFlags &= ~kEngineBlockInput;
+		g_engineFlags &= ~kEngineBlockInput;
 		return _helper->getState("selectcharacter");
 	}
 

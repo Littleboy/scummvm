@@ -138,7 +138,7 @@ public:
 	}
 
 	Cnv(uint16 numFrames, uint16 width, uint16 height, byte* data, bool freeData = false)
-		: _count(numFrames), _width(width), _height(height), _data(data), _freeData(freeData) {
+		: _count(numFrames), _width(width), _height(height), _data(data), _freeData(freeData), field_8(0) {
 
 	}
 
@@ -289,8 +289,6 @@ class GfxObj {
 	char *_name;
 	Frames *_frames;
 
-	bool _keep;
-
 public:
 	int16 x, y;
 
@@ -377,14 +375,14 @@ public:
 	void toggleMaskPatch(uint id, int x, int y, bool apply);
 	uint16 getMaskLayer(uint16 z) const;
 	void finalizeMask();
-	void loadGfxObjMask(const char *name, GfxObj *obj);
+	void loadGfxObjMask(Parallaction *vm, const char *name, GfxObj *obj);
 
 	// path management
 	bool hasPath();
 	uint addPathPatch(PathBuffer *patch);
 	void togglePathPatch(uint id, int x, int y, bool apply);
 	void finalizePath();
-	void loadGfxObjPath(const char *name, GfxObj *obj);
+	void loadGfxObjPath(Parallaction *vm, const char *name, GfxObj *obj);
 };
 
 
@@ -467,7 +465,7 @@ public:
 	void invertBackground(const Common::Rect& r);
 
 	// palette
-	void setPalette(Palette palette);
+	void setPalette(Palette &palette);
 	void setBlackPalette();
 	void animatePalette();
 

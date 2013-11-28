@@ -20,6 +20,8 @@
  *
  */
 
+#include "graphics/cursorman.h"
+
 #include "tsage/scenes.h"
 #include "tsage/tsage.h"
 #include "tsage/staticres.h"
@@ -146,9 +148,9 @@ void Scene1000::signal() {
 		break;
 
 	case 2:
-		if (R2_GLOBALS._speechSubtitles & SPEECH_TEXT) {
+		if (R2_GLOBALS._speechSubtitles & SPEECH_TEXT)
 			setAction(&_sequenceManager1, this, 1, &R2_GLOBALS._player, NULL);
-		} else {
+		else {
 			if (++_animCounter < 3)
 				_sceneMode = 2;
 
@@ -463,9 +465,8 @@ void Scene1000::dispatch() {
 
 			if (_sceneMode == 52)
 				_animationPlayer._endAction = this;
-		} else {
+		} else
 			_animationPlayer.dispatch();
-		}
 	}
 
 	Scene::dispatch();
@@ -723,9 +724,8 @@ bool Scene1100::Trooper::startAction(CursorType action, Event &event) {
 			scene->_sceneMode = 1114;
 			scene->setAction(&scene->_sequenceManager1, scene, 1114, &R2_GLOBALS._player, &scene->_trooper, NULL);
 			return true;
-		} else {
+		} else
 			return SceneActor::startAction(action, event);
-		}
 		break;
 	case R2_SONIC_STUNNER:
 	// No break on purpose
@@ -745,15 +745,13 @@ bool Scene1100::Trooper::startAction(CursorType action, Event &event) {
 			// Trooper wears his black uniform
 			R2_GLOBALS._player.disableControl();
 			scene->_sceneMode = 1113;
-			if (R2_GLOBALS._player._characterIndex == R2_QUINN) {
+			if (R2_GLOBALS._player._characterIndex == R2_QUINN)
 				scene->setAction(&scene->_sequenceManager1, scene, 1113, &R2_GLOBALS._player, &scene->_trooper, NULL);
-			} else {
+			else
 				scene->setAction(&scene->_sequenceManager1, scene, 1118, &R2_GLOBALS._player, &scene->_trooper, NULL);
-			}
 			return true;
-		} else {
+		} else
 			return SceneActor::startAction(action, event);
-		}
 		break;
 	default:
 		return SceneActor::startAction(action, event);
@@ -783,16 +781,14 @@ void Scene1100::postInit(SceneObjectList *OwnerList) {
 	else
 		loadScene(1100);
 
-	if ((R2_GLOBALS._sceneManager._previousScene == 1000) && (!R2_GLOBALS.getFlag(44))) {
+	if ((R2_GLOBALS._sceneManager._previousScene == 1000) && (!R2_GLOBALS.getFlag(44)))
 		R2_GLOBALS._uiElements._active = false;
-	}
 
 	if (R2_GLOBALS._player._characterScene[R2_QUINN] == 1100)
 		R2_GLOBALS._sceneManager._previousScene = 1100;
 
-	if (R2_GLOBALS._sceneManager._previousScene == -1) {
+	if (R2_GLOBALS._sceneManager._previousScene == -1)
 		R2_GLOBALS._uiElements._active = false;
-	}
 
 	SceneExt::postInit();
 
@@ -1218,9 +1214,9 @@ void Scene1100::signal() {
 				else
 					_stripManager.start(322, this);
 			}
-		} else {
+		} else
 			_stripManager.start3(_nextStripNum, this, _stripManager._lookupList);
-		}
+
 		break;
 	case 54:
 		if (_stripManager._exitMode == 1) {
@@ -1574,7 +1570,7 @@ void Scene1200::signal() {
 	// No break on purpose
 	case 1203:
 		R2_GLOBALS._player.enableControl();
-		warning("_eventManager.waitEvent()");
+		// CHECKME: The original is calling _eventManager.waitEvent();
 		_sceneMode = 2;
 		break;
 	case 10:
@@ -1796,7 +1792,7 @@ void Scene1200::signal() {
 		R2_GLOBALS._player.animate(ANIM_MODE_6, this);
 		break;
 	default:
-		warning("_eventManager.waitEvent()");
+		// CHECKME: The original is walling _eventManager.waitEvent();
 		_sceneMode = 2;
 		break;
 	}
@@ -1958,9 +1954,8 @@ void Scene1200::process(Event &event) {
 			return;
 			break;
 		}
-	} else {
+	} else
 		return;
-	}
 }
 
 void Scene1200::dispatch() {
@@ -2267,18 +2262,18 @@ void Scene1337::synchronize(Serializer &s) {
 	warning("STUBBED: Scene1337::synchronize()");
 }
 
-void Scene1337::Action1337::subD18B5(int resNum, int stripNum, int frameNum) {
-	warning("STUBBED: Action1337::subD18B5()");
-}
-
-void Scene1337::Action1337::skipFrames(int32 skipCount) {
+void Scene1337::Action1337::waitFrames(int32 frameCount) {
 	uint32 firstFrameNumber = g_globals->_events.getFrameNumber();
-	uint32 tmpFrameNumber = firstFrameNumber;
+	uint32 curFrame = firstFrameNumber;
+	uint32 destFrame = firstFrameNumber + frameCount;
 
-	while (tmpFrameNumber < firstFrameNumber + skipCount)
-		tmpFrameNumber = g_globals->_events.getFrameNumber();
-
-	warning("_eventManager.waitEvent(-1)");
+	while (curFrame < destFrame) {
+		TsAGE::Event event;
+		g_globals->_events.getEvent(event);
+		curFrame = g_globals->_events.getFrameNumber();
+	}
+	
+	// CHECKME: The original is calling _eventManager.waitEvent();
 }
 
 void Scene1337::Action1::signal() {
@@ -2365,7 +2360,7 @@ void Scene1337::Action1::signal() {
 
 		R2_GLOBALS._sceneObjects->draw();
 
-		skipFrames(60);
+		waitFrames(60);
 		scene->actionDisplay(1331, 9, 159, 10, 1, 200, 0, 7, 0, 154, 154);
 
 		scene->_arrunkObj1337[2]._arr2[1]._field34 = 2;
@@ -2435,7 +2430,7 @@ void Scene1337::Action1::signal() {
 
 		R2_GLOBALS._sceneObjects->draw();
 
-		skipFrames(120);
+		waitFrames(120);
 		scene->_arrunkObj1337[2]._arr2[0]._object1.remove();
 		scene->_arrunkObj1337[2]._arr2[1]._object1.remove();
 		scene->_arrunkObj1337[2]._arr2[2]._object1.remove();
@@ -2573,7 +2568,7 @@ void Scene1337::Action1::signal() {
 
 		R2_GLOBALS._sceneObjects->draw();
 
-		skipFrames(60);
+		waitFrames(60);
 		scene->actionDisplay(1331, 11, 159, 10, 1, 200, 0, 7, 0, 154, 154);
 		scene->actionDisplay(1331, 12, 159, 10, 1, 200, 0, 7, 0, 154, 154);
 
@@ -2604,7 +2599,7 @@ void Scene1337::Action1::signal() {
 
 		R2_GLOBALS._sceneObjects->draw();
 
-		skipFrames(60);
+		waitFrames(60);
 		scene->actionDisplay(1331, 13, 159, 10, 1, 200, 0, 7, 0, 154, 154);
 
 		scene->_arrunkObj1337[2]._arr2[1]._field34 = scene->_arrunkObj1337[2]._arr1[3]._field34;
@@ -2651,7 +2646,7 @@ void Scene1337::Action1::signal() {
 
 		R2_GLOBALS._sceneObjects->draw();
 
-		skipFrames(60);
+		waitFrames(60);
 		scene->actionDisplay(1331, 14, 159, 10, 1, 200, 0, 7, 0, 154, 154);
 
 		scene->_arrunkObj1337[2]._arr3[0]._object1.postInit();
@@ -2677,7 +2672,7 @@ void Scene1337::Action1::signal() {
 
 		R2_GLOBALS._sceneObjects->draw();
 
-		skipFrames(60);
+		waitFrames(60);
 		scene->actionDisplay(1331, 15, 159, 10, 1, 200, 0, 7, 0, 154, 154);
 
 		int tmpVal = 15;
@@ -2711,7 +2706,7 @@ void Scene1337::Action1::signal() {
 
 		R2_GLOBALS._sceneObjects->draw();
 
-		skipFrames(240);
+		waitFrames(240);
 
 		scene->_arrObject1[0].remove();
 		scene->_arrObject1[1].remove();
@@ -2800,7 +2795,7 @@ void Scene1337::Action1::signal() {
 
 		R2_GLOBALS._sceneObjects->draw();
 
-		skipFrames(240);
+		waitFrames(240);
 		scene->actionDisplay(1331, 17, 159, 10, 1, 200, 0, 7, 0, 154, 154);
 
 		tmpVal = 72;
@@ -2828,7 +2823,7 @@ void Scene1337::Action1::signal() {
 
 		R2_GLOBALS._sceneObjects->draw();
 
-		skipFrames(240);
+		waitFrames(240);
 
 		scene->_arrObject1[0].remove();
 		scene->_arrObject1[1].remove();
@@ -2944,7 +2939,7 @@ void Scene1337::Action1::signal() {
 
 		R2_GLOBALS._sceneObjects->draw();
 
-		skipFrames(240);
+		waitFrames(240);
 
 		scene->_arrObject1[0].remove();
 		scene->_arrObject1[1].remove();
@@ -3545,7 +3540,7 @@ void Scene1337::Action5::signal() {
 		scene->_field3EF0->_object1.remove();
 
 		if (scene->_field3EF0 == &scene->_item6) {
-			subD18B5(5, 1, 4);
+			scene->setCursorData(5, 1, 4);
 			scene->subC4CEC();
 		}
 		scene->_item2._object1.setPosition(scene->_field3EF0->_field36, 0);
@@ -3593,7 +3588,7 @@ void Scene1337::Action6::signal() {
 		scene->setAnimationInfo(scene->_field3EF4);
 		scene->_aSound1.play(59);
 		if (scene->_field3EF0 == &scene->_item6) {
-			subD18B5(5, 1, 4);
+			scene->setCursorData(5, 1, 4);
 			scene->subC4CEC();
 		}
 		scene->subC20F9();
@@ -3621,7 +3616,7 @@ void Scene1337::Action7::signal() {
 		break;
 	case 1:
 		if (scene->_field3EF0 == &scene->_item6) {
-			subD18B5(5, 1, 4);
+			scene->setCursorData(5, 1, 4);
 			scene->subC4CEC();
 		}
 		scene->setAnimationInfo(scene->_field3EF4);
@@ -3662,7 +3657,7 @@ void Scene1337::Action8::signal() {
 		scene->_item2._object1.hide();
 
 		if (scene->_field3EF0 == &scene->_item6) {
-			subD18B5(5, 1, 4);
+			scene->setCursorData(5, 1, 4);
 			scene->subC4CEC();
 		}
 		scene->setAnimationInfo(scene->_field3EF4);
@@ -3702,7 +3697,7 @@ void Scene1337::Action9::signal() {
 		scene->_aSound1.play(57);
 
 		if (scene->_field3EF0 == &scene->_item6) {
-			subD18B5(5, 1, 4);
+			scene->setCursorData(5, 1, 4);
 			scene->subC4CEC();
 		}
 
@@ -3729,7 +3724,7 @@ void Scene1337::Action10::signal() {
 		scene->_field3EF0->_object1.remove();
 
 		if (scene->_field3EF0 == &scene->_item6) {
-			subD18B5(5, 1, 4);
+			scene->setCursorData(5, 1, 4);
 			scene->subC4CEC();
 		}
 
@@ -3897,7 +3892,7 @@ void Scene1337::Action11::signal() {
 
 		if (scene->_field4240 == 2) {
 			scene->_item2._object1.setPosition(scene->_field3EF4->_field36, 0);
-			subD18B5(5, 1, 4);
+			scene->setCursorData(5, 1, 4);
 		} else {
 			scene->_field3EF0->_field34 = 0;
 			scene->_field3EF0->_object1.remove();
@@ -5544,11 +5539,11 @@ void Scene1337::suggestInstructions() {
 	} else {
 		if (R2_GLOBALS._v57709 == 0)
 			subD18F5();
-		subCB59B();
+		displayInstructions();
 	}
 }
 
-void Scene1337::subCB59B() {
+void Scene1337::displayInstructions() {
 	_item1.setAction(&_action1);
 }
 
@@ -5607,6 +5602,7 @@ void Scene1337::subCCF26() {
 	_item1.setAction(&_action3);
 }
 void Scene1337::subCD193() {
+	// Display menu with "Auto Play", "New Game", "Quit" and "Continue"
 	warning("STUBBED: subCD193()");
 }
 
@@ -6442,7 +6438,7 @@ void Scene1337::subD02CA() {
 				_item6._object1._mover = _arrunkObj1337[2]._arr1[di]._object1._mover;
 				_item6._object1._moveDiff = _arrunkObj1337[2]._arr1[di]._object1._moveDiff;
 				_item6._object1._moveRate = _arrunkObj1337[2]._arr1[di]._object1._moveRate;
-				_item6._object1._field8A = _arrunkObj1337[2]._arr1[di]._object1._field8A;
+				_item6._object1._actorDestPos = _arrunkObj1337[2]._arr1[di]._object1._actorDestPos;
 				_item6._object1._endAction = _arrunkObj1337[2]._arr1[di]._object1._endAction;
 				_item6._object1._regionBitList = _arrunkObj1337[2]._arr1[di]._object1._regionBitList;
 				// _item6._object1._actorName = _arrunkObj1337[2]._arr1[di]._object1._actorName;
@@ -6471,7 +6467,7 @@ void Scene1337::subD02CA() {
 	}
 
 	// That continues the block when R2_GLOBALS._v57810 == 200 and di != 4
-	subD18B5(1332, _item6._object1._strip, _item6._object1._frame);
+	setCursorData(1332, _item6._object1._strip, _item6._object1._frame);
 	R2_GLOBALS._sceneObjects->draw();
 	Event event;
 	bool found = false;
@@ -6492,7 +6488,7 @@ void Scene1337::subD02CA() {
 						_arrunkObj1337[2]._arr1[i]._object1.setPosition(_arrunkObj1337[2]._arr1[i]._field36, 0);
 						_arrunkObj1337[2]._arr1[i]._object1.fixPriority(170);
 						setAnimationInfo(&_arrunkObj1337[2]._arr1[i]);
-						subD18B5(5, 1, 4);
+						setCursorData(5, 1, 4);
 						found = true;
 						_field423E--;
 						_field4244 = 0;
@@ -6832,8 +6828,20 @@ void Scene1337::subD183F(int arg1, int arg2) {
 	}
 }
 
-void Scene1337::subD18B5(int resNum, int rlbNum, int arg3) {
-	warning("STUBBED lvl3 Scene1337::subD18B5()");
+void Scene1337::setCursorData(int resNum, int rlbNum, int frameNum) {
+	// Change the mouse cursor and set it to the desired frame (if different than 0)
+	if (!frameNum)
+		return;
+
+	uint size;
+	byte *cursor = g_resourceManager->getSubResource(resNum, rlbNum, frameNum, &size);
+	// Decode the cursor
+	GfxSurface s = surfaceFromRes(cursor);
+
+	Graphics::Surface surface = s.lockSurface();
+	const byte *cursorData = (const byte *)surface.getPixels();
+	CursorMan.replaceCursor(cursorData, surface.w, surface.h, s._centroid.x, s._centroid.y, s._transColor);
+	s.unlockSurface();
 }
 
 int Scene1337::subD18F5() {
@@ -6867,7 +6875,7 @@ int Scene1337::subD1940(bool flag) {
 }
 
 void Scene1337::subD195F(int arg1, int arg2) {
-	subD18B5(5, arg1, arg2);
+	setCursorData(5, arg1, arg2);
 }
 
 void Scene1337::subD1975(int arg1, int arg2) {
@@ -13350,7 +13358,8 @@ bool Scene1945::Ladder::startAction(CursorType action, Event &event) {
 	} else if (  ((R2_GLOBALS._player._position.x == 197) && (R2_GLOBALS._player._position.y == 158))
 		      || ((R2_GLOBALS._player._position.x == 191) && (R2_GLOBALS._player._position.y == 142)) ) {
 		scene->_sceneMode = 1947;
-	} else if ((R2_GLOBALS._player._position.x == 221) && (R2_GLOBALS._player._position.y == 142) && (event.mousePos.y >= 30)) {
+	} else if ((R2_GLOBALS._player._position.x == 154) && (R2_GLOBALS._player._position.y == 50) 
+			&& (event.mousePos.y >= 30)) {
 		scene->_sceneMode = 1940;
 	} else {
 		R2_GLOBALS._player.enableControl(CURSOR_USE);
@@ -13551,6 +13560,7 @@ void Scene1945::signal() {
 			setAction(&_sequenceManager1, this, _sceneMode, &R2_GLOBALS._player, &_gunpowder, NULL);
 			return;
 		}
+		_sceneMode = 0;
 		break;
 	case 1947:
 		if (_nextSceneMode1 == 1943) {
@@ -13770,6 +13780,7 @@ bool Scene1950::Gem::startAction(CursorType action, Event &event) {
 /*--------------------------------------------------------------------------*/
 
 Scene1950::Vampire::Vampire() {
+	_deadPosition = Common::Point(0, 0);
 	_deltaX = 0;
 	_deltaY = 0;
 	_vampireMode = 0;
@@ -14964,16 +14975,19 @@ void Scene1950::enterArea() {
 
 		R2_GLOBALS._sceneItems.remove(&_background);
 		_background.setDetails(Rect(0, 0, 320, 200), 1950, 0, 1, 2, 2, NULL);
+
+		_removeFlag = false;
 	}
 
 	switch (R2_GLOBALS._flubMazeEntryDirection) {
 	case 0:
 		_sceneMode = 1950;
-		if (R2_INVENTORY.getObjectScene(R2_SCRITH_KEY) == 0) {
+		if (R2_INVENTORY.getObjectScene(R2_SCRITH_KEY) == 0)
+			// The original uses CURSOR_ARROW. CURSOR_WALK is much more coherent
 			R2_GLOBALS._player.enableControl(CURSOR_WALK);
-		} else {
+		else
 			setAction(&_sequenceManager, this, 1950, &R2_GLOBALS._player, NULL);
-		}
+
 		break;
 	case 1: {
 		_sceneMode = R2_GLOBALS._flubMazeEntryDirection;
@@ -15311,9 +15325,9 @@ void Scene1950::signal() {
 	case 1964:
 	// No break on purpose
 	case 1965:
-		if (!R2_GLOBALS.getFlag(37)) {
+		if (!R2_GLOBALS.getFlag(37))
 			SceneItem::display(1950, 26, 0, 280, 1, 160, 9, 1, 2, 20, 7, 7, LIST_END);
-		}
+
 		R2_GLOBALS._player.enableControl();
 		break;
 	case 1966:
@@ -15337,7 +15351,8 @@ void Scene1950::signal() {
 			R2_GLOBALS._player.setVisage(22);
 
 		R2_GLOBALS._player.animate(ANIM_MODE_1, NULL);
-		Common::Point pt(218, 165);
+		// This is a hack to work around a pathfinding issue. original destination is (218, 165)
+		Common::Point pt(128, 165);
 		NpcMover *mover = new NpcMover();
 		R2_GLOBALS._player.addMover(mover, &pt, this);
 		}

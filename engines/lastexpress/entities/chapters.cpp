@@ -214,7 +214,7 @@ IMPLEMENT_FUNCTION(6, Chapters, firstDream)
 		RESET_ENTITY_STATE(kEntityCooks, Cooks, setup_lockUp);
 
 		RESET_ENTITY_STATE(kEntityMertens, Mertens, setup_function42);
-		RESET_ENTITY_STATE(kEntityCoudert, Coudert, setup_chapter1Handler);
+		RESET_ENTITY_STATE(kEntityCoudert, Coudert, setup_sittingChapter1);
 		RESET_ENTITY_STATE(kEntityVerges,  Verges, setup_chapter1Handler);
 
 		getSavePoints()->push(kEntityChapters, kEntityMertens, kAction201431954);
@@ -1552,7 +1552,7 @@ label_callback_4:
 			RESET_ENTITY_STATE(kEntityAnna, Anna, setup_sulking);
 			RESET_ENTITY_STATE(kEntityAugust, August, setup_function65);
 			RESET_ENTITY_STATE(kEntityMertens, Mertens, setup_function48);
-			RESET_ENTITY_STATE(kEntityCoudert, Coudert, setup_function53);
+			RESET_ENTITY_STATE(kEntityCoudert, Coudert, setup_onDuty4);
 			RESET_ENTITY_STATE(kEntityWaiter1, Waiter1, setup_serving4);
 			RESET_ENTITY_STATE(kEntityWaiter2, Waiter2, setup_serving4);
 			RESET_ENTITY_STATE(kEntityPascale, Pascale, setup_chapter4Handler);

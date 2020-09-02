@@ -331,7 +331,7 @@ IMPLEMENT_FUNCTION(10, Vassili, seizure)
 
 		// Setup Anna & Coudert
 		RESET_ENTITY_STATE(kEntityAnna, Anna, setup_function37);
-		RESET_ENTITY_STATE(kEntityCoudert, Coudert, setup_function38);
+		RESET_ENTITY_STATE(kEntityCoudert, Coudert, setup_atSeizure);
 
 		setCallback(1);
 		setup_savegame(kSavegameTypeEvent, kEventVassiliSeizure);

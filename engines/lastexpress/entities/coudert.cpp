@@ -50,56 +50,56 @@ Coudert::Coudert(LastExpressEngine *engine) : Entity(engine, kEntityCoudert) {
 	ADD_CALLBACK_FUNCTION_I(Coudert, updateFromTime);
 	ADD_CALLBACK_FUNCTION_I(Coudert, updateFromTicks);
 	ADD_CALLBACK_FUNCTION_I(Coudert, excuseMe);
-	ADD_CALLBACK_FUNCTION_II(Coudert, function13);
-	ADD_CALLBACK_FUNCTION_I(Coudert, function14);
-	ADD_CALLBACK_FUNCTION_I(Coudert, function15);
-	ADD_CALLBACK_FUNCTION(Coudert, function16);
-	ADD_CALLBACK_FUNCTION_I(Coudert, function17);
-	ADD_CALLBACK_FUNCTION(Coudert, function18);
-	ADD_CALLBACK_FUNCTION_I(Coudert, function19);
-	ADD_CALLBACK_FUNCTION_II(Coudert, function20);
-	ADD_CALLBACK_FUNCTION(Coudert, function21);
-	ADD_CALLBACK_FUNCTION(Coudert, function22);
-	ADD_CALLBACK_FUNCTION(Coudert, function23);
-	ADD_CALLBACK_FUNCTION(Coudert, visitCompartmentF);
-	ADD_CALLBACK_FUNCTION(Coudert, function25);
-	ADD_CALLBACK_FUNCTION(Coudert, function26);
-	ADD_CALLBACK_FUNCTION(Coudert, function27);
-	ADD_CALLBACK_FUNCTION(Coudert, visitCompartmentB);
-	ADD_CALLBACK_FUNCTION(Coudert, visitCompartmentA);
-	ADD_CALLBACK_FUNCTION_TYPE2(Coudert, function30, EntityParametersI5S, EntityParametersSIIS);
-	ADD_CALLBACK_FUNCTION_I(Coudert, function31);
-	ADD_CALLBACK_FUNCTION(Coudert, function32);
-	ADD_CALLBACK_FUNCTION(Coudert, function33);
-	ADD_CALLBACK_FUNCTION_I(Coudert, function34);
-	ADD_CALLBACK_FUNCTION_I(Coudert, function35);
+	ADD_CALLBACK_FUNCTION_II(Coudert, passing);
+	ADD_CALLBACK_FUNCTION_I(Coudert, listen);
+	ADD_CALLBACK_FUNCTION_I(Coudert, tatianaLockUnlockMyCompartment);
+	ADD_CALLBACK_FUNCTION(Coudert, getUp);
+	ADD_CALLBACK_FUNCTION_I(Coudert, getUpListen);
+	ADD_CALLBACK_FUNCTION(Coudert, sitDown);
+	ADD_CALLBACK_FUNCTION_I(Coudert, sitDownFast);
+	ADD_CALLBACK_FUNCTION_II(Coudert, makeBed);
+	ADD_CALLBACK_FUNCTION(Coudert, makeBedIvo);
+	ADD_CALLBACK_FUNCTION(Coudert, makeBedMilos);
+	ADD_CALLBACK_FUNCTION(Coudert, tryMakeAnna);
+	ADD_CALLBACK_FUNCTION(Coudert, makeBedAnna);
+	ADD_CALLBACK_FUNCTION(Coudert, makeBedRebecca);
+	ADD_CALLBACK_FUNCTION(Coudert, makeBedMadame);
+	ADD_CALLBACK_FUNCTION(Coudert, makeBedMonsieur);
+	ADD_CALLBACK_FUNCTION(Coudert, makeBedTatiana);
+	ADD_CALLBACK_FUNCTION(Coudert, makeBedVassili);
+	ADD_CALLBACK_FUNCTION_TYPE2(Coudert, cathBuzzing, EntityParametersI5S, EntityParametersSIIS);
+	ADD_CALLBACK_FUNCTION_I(Coudert, cathRattling);
+	ADD_CALLBACK_FUNCTION(Coudert, bathroomTrip);
+	ADD_CALLBACK_FUNCTION(Coudert, doPending);
+	ADD_CALLBACK_FUNCTION_I(Coudert, takeMaxBack);
+	ADD_CALLBACK_FUNCTION_I(Coudert, returnMax);
 	ADD_CALLBACK_FUNCTION(Coudert, chapter1);
-	ADD_CALLBACK_FUNCTION(Coudert, function37);
-	ADD_CALLBACK_FUNCTION(Coudert, function38);
-	ADD_CALLBACK_FUNCTION(Coudert, function39);
-	ADD_CALLBACK_FUNCTION(Coudert, chapter1Handler);
-	ADD_CALLBACK_FUNCTION(Coudert, function41);
+	ADD_CALLBACK_FUNCTION(Coudert, respondVassili);
+	ADD_CALLBACK_FUNCTION(Coudert, atSeizure);
+	ADD_CALLBACK_FUNCTION(Coudert, afterPolice);
+	ADD_CALLBACK_FUNCTION(Coudert, sittingChapter1);
+	ADD_CALLBACK_FUNCTION(Coudert, makeAllBeds);
 	ADD_CALLBACK_FUNCTION(Coudert, chapter2);
-	ADD_CALLBACK_FUNCTION(Coudert, function43);
+	ADD_CALLBACK_FUNCTION(Coudert, sittingChapter2);
 	ADD_CALLBACK_FUNCTION(Coudert, chapter3);
-	ADD_CALLBACK_FUNCTION(Coudert, function45);
-	ADD_CALLBACK_FUNCTION(Coudert, function46);
-	ADD_CALLBACK_FUNCTION_I(Coudert, function47);
-	ADD_CALLBACK_FUNCTION(Coudert, function48);
-	ADD_CALLBACK_FUNCTION(Coudert, function49);
-	ADD_CALLBACK_FUNCTION(Coudert, function50);
-	ADD_CALLBACK_FUNCTION(Coudert, function51);
+	ADD_CALLBACK_FUNCTION(Coudert, sittingChapter3);
+	ADD_CALLBACK_FUNCTION(Coudert, annaTakeMax);
+	ADD_CALLBACK_FUNCTION_I(Coudert, annaLockMe);
+	ADD_CALLBACK_FUNCTION(Coudert, annaUnlockMe);
+	ADD_CALLBACK_FUNCTION(Coudert, inviteTatiana);
+	ADD_CALLBACK_FUNCTION(Coudert, inviteRebecca);
+	ADD_CALLBACK_FUNCTION(Coudert, tatianaComeHere);
 	ADD_CALLBACK_FUNCTION(Coudert, chapter4);
-	ADD_CALLBACK_FUNCTION(Coudert, function53);
-	ADD_CALLBACK_FUNCTION(Coudert, function54);
-	ADD_CALLBACK_FUNCTION(Coudert, function55);
-	ADD_CALLBACK_FUNCTION(Coudert, function56);
+	ADD_CALLBACK_FUNCTION(Coudert, onDuty4);
+	ADD_CALLBACK_FUNCTION(Coudert, waitBombDefused);
+	ADD_CALLBACK_FUNCTION(Coudert, serviceAnna);
+	ADD_CALLBACK_FUNCTION(Coudert, makeAllBedsChapter4);
 	ADD_CALLBACK_FUNCTION(Coudert, chapter5);
 	ADD_CALLBACK_FUNCTION(Coudert, chapter5Handler);
-	ADD_CALLBACK_FUNCTION(Coudert, function59);
-	ADD_CALLBACK_FUNCTION(Coudert, function60);
-	ADD_CALLBACK_FUNCTION(Coudert, function61);
-	ADD_CALLBACK_FUNCTION(Coudert, function62);
+	ADD_CALLBACK_FUNCTION(Coudert, returnSeat);
+	ADD_CALLBACK_FUNCTION(Coudert, waitingChapter5);
+	ADD_CALLBACK_FUNCTION(Coudert, makeRounds);
+	ADD_CALLBACK_FUNCTION(Coudert, inCompartmentH);
 	ADD_NULL_FUNCTION();
 }
 
@@ -449,7 +449,7 @@ IMPLEMENT_FUNCTION_I(12, Coudert, excuseMe, EntityIndex)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_II(13, Coudert, function13, bool, EntityIndex)
+IMPLEMENT_FUNCTION_II(13, Coudert, passing, bool, EntityIndex)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -466,7 +466,7 @@ IMPLEMENT_FUNCTION_II(13, Coudert, function13, bool, EntityIndex)
 				if (!params->param4) {
 					getData()->inventoryItem = kItemNone;
 					setCallback(4);
-					setup_function19(true);
+					setup_sitDownFast(true);
 					break;
 				}
 			}
@@ -476,7 +476,7 @@ IMPLEMENT_FUNCTION_II(13, Coudert, function13, bool, EntityIndex)
 
 				getData()->inventoryItem = kItemNone;
 				setCallback(4);
-				setup_function19(true);
+				setup_sitDownFast(true);
 				break;
 			}
 		}
@@ -486,7 +486,7 @@ IMPLEMENT_FUNCTION_II(13, Coudert, function13, bool, EntityIndex)
 
 		getData()->inventoryItem = kItemNone;
 		setCallback(5);
-		setup_function19(true);
+		setup_sitDownFast(true);
 		break;
 
 	case kAction1:
@@ -517,7 +517,7 @@ IMPLEMENT_FUNCTION_II(13, Coudert, function13, bool, EntityIndex)
 		if (params->param2 && !params->param3) {
 			getData()->inventoryItem = kItemNone;
 			setCallback(7);
-			setup_function19(true);
+			setup_sitDownFast(true);
 		}
 		break;
 
@@ -525,7 +525,7 @@ IMPLEMENT_FUNCTION_II(13, Coudert, function13, bool, EntityIndex)
 		if (!params->param3) {
 			getData()->inventoryItem = kItemNone;
 			setCallback(6);
-			setup_function19(true);
+            setup_sitDownFast(true);
 		}
 		break;
 
@@ -536,7 +536,7 @@ IMPLEMENT_FUNCTION_II(13, Coudert, function13, bool, EntityIndex)
 
 		case 1:
 			setCallback(2);
-			setup_function17(true);
+			setup_getUpListen(true);
 			break;
 
 		case 2:
@@ -573,7 +573,7 @@ IMPLEMENT_FUNCTION_II(13, Coudert, function13, bool, EntityIndex)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(14, Coudert, function14, EntityIndex)
+IMPLEMENT_FUNCTION_I(14, Coudert, listen, EntityIndex)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -603,7 +603,7 @@ IMPLEMENT_FUNCTION_I(14, Coudert, function14, EntityIndex)
 			getSavePoints()->push(kEntityCoudert, (EntityIndex)params->param1, kAction202558662);
 
 			setCallback(2);
-			setup_function17(false);
+			setup_getUpListen(false);
 			break;
 
 		case 2:
@@ -648,13 +648,13 @@ IMPLEMENT_FUNCTION_I(14, Coudert, function14, EntityIndex)
 		}
 
 		setCallback(5);
-		setup_function19(false);
+		setup_sitDownFast(false);
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(15, Coudert, function15, bool)
+IMPLEMENT_FUNCTION_I(15, Coudert, tatianaLockUnlockMyCompartment, bool)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -664,7 +664,7 @@ IMPLEMENT_FUNCTION_I(15, Coudert, function15, bool)
 		ENTITY_PARAM(1, 1) = 0;
 
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -697,7 +697,7 @@ IMPLEMENT_FUNCTION_I(15, Coudert, function15, bool)
 
 		case 4:
 			setCallback(5);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 5:
@@ -709,7 +709,7 @@ IMPLEMENT_FUNCTION_I(15, Coudert, function15, bool)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(16, Coudert, function16)
+IMPLEMENT_FUNCTION(16, Coudert, getUp)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -746,7 +746,7 @@ IMPLEMENT_FUNCTION(16, Coudert, function16)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(17, Coudert, function17, bool)
+IMPLEMENT_FUNCTION_I(17, Coudert, getUpListen, bool)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -792,7 +792,7 @@ IMPLEMENT_FUNCTION_I(17, Coudert, function17, bool)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(18, Coudert, function18)
+IMPLEMENT_FUNCTION(18, Coudert, sitDown)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -861,7 +861,7 @@ IMPLEMENT_FUNCTION(18, Coudert, function18)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(19, Coudert, function19, bool)
+IMPLEMENT_FUNCTION_I(19, Coudert, sitDownFast, bool)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -906,7 +906,7 @@ IMPLEMENT_FUNCTION_I(19, Coudert, function19, bool)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_II(20, Coudert, function20, ObjectIndex, ObjectIndex)
+IMPLEMENT_FUNCTION_II(20, Coudert, makeBed, ObjectIndex, ObjectIndex)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -989,7 +989,7 @@ IMPLEMENT_FUNCTION_II(20, Coudert, function20, ObjectIndex, ObjectIndex)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(21, Coudert, function21)
+IMPLEMENT_FUNCTION(21, Coudert, makeBedIvo)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1031,7 +1031,7 @@ IMPLEMENT_FUNCTION(21, Coudert, function21)
 			getEntities()->clearSequences(kEntityCoudert);
 
 			setCallback(4);
-			setup_function20(kObjectCompartmentH, kObjectNone);
+			setup_makeBed(kObjectCompartmentH, kObjectNone);
 			break;
 
 		case 4:
@@ -1056,7 +1056,7 @@ IMPLEMENT_FUNCTION(21, Coudert, function21)
 			getEntities()->clearSequences(kEntityCoudert);
 
 			setCallback(8);
-			setup_function20(kObjectCompartmentH, kObjectNone);
+			setup_makeBed(kObjectCompartmentH, kObjectNone);
 			break;
 
 		case 8:
@@ -1091,7 +1091,7 @@ IMPLEMENT_FUNCTION(21, Coudert, function21)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(22, Coudert, function22)
+IMPLEMENT_FUNCTION(22, Coudert, makeBedMilos)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1133,7 +1133,7 @@ IMPLEMENT_FUNCTION(22, Coudert, function22)
 			getEntities()->clearSequences(kEntityCoudert);
 
 			setCallback(4);
-			setup_function20(kObjectCompartmentG, kObjectNone);
+			setup_makeBed(kObjectCompartmentG, kObjectNone);
 			break;
 
 		case 4:
@@ -1158,7 +1158,7 @@ IMPLEMENT_FUNCTION(22, Coudert, function22)
 			getEntities()->clearSequences(kEntityCoudert);
 
 			setCallback(8);
-			setup_function20(kObjectCompartmentG, kObjectNone);
+			setup_makeBed(kObjectCompartmentG, kObjectNone);
 			break;
 
 		case 8:
@@ -1193,7 +1193,7 @@ IMPLEMENT_FUNCTION(22, Coudert, function22)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(23, Coudert, function23)
+IMPLEMENT_FUNCTION(23, Coudert, tryMakeAnna)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1232,12 +1232,12 @@ IMPLEMENT_FUNCTION(23, Coudert, function23)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(24, Coudert, visitCompartmentF)
+IMPLEMENT_FUNCTION(24, Coudert, makeBedAnna)
 	visitCompartment(savepoint, kPosition_4070, "627Vf", kObjectCompartmentF, "627Wf", "627Zf", kPosition_4455, kObject53, "697Af");
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(25, Coudert, function25)
+IMPLEMENT_FUNCTION(25, Coudert, makeBedRebecca)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1283,7 +1283,7 @@ IMPLEMENT_FUNCTION(25, Coudert, function25)
 			getEntities()->clearSequences(kEntityCoudert);
 
 			setCallback(6);
-			setup_function20(kObjectCompartmentE, kObject52);
+			setup_makeBed(kObjectCompartmentE, kObject52);
 			break;
 
 		case 6:
@@ -1303,7 +1303,7 @@ IMPLEMENT_FUNCTION(25, Coudert, function25)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(26, Coudert, function26)
+IMPLEMENT_FUNCTION(26, Coudert, makeBedMadame)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1346,7 +1346,7 @@ IMPLEMENT_FUNCTION(26, Coudert, function26)
 			getEntities()->clearSequences(kEntityCoudert);
 
 			setCallback(getCallback() + 1);
-			setup_function20(kObjectCompartmentD, kObject51);
+			setup_makeBed(kObjectCompartmentD, kObject51);
 			break;
 
 		case 4:
@@ -1395,7 +1395,7 @@ IMPLEMENT_FUNCTION(26, Coudert, function26)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(27, Coudert, function27)
+IMPLEMENT_FUNCTION(27, Coudert, makeBedMonsieur)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1437,7 +1437,7 @@ IMPLEMENT_FUNCTION(27, Coudert, function27)
 			getEntities()->clearSequences(kEntityCoudert);
 
 			setCallback(4);
-			setup_function20(kObjectCompartmentC, kObject50);
+			setup_makeBed(kObjectCompartmentC, kObject50);
 			break;
 
 		case 4:
@@ -1460,7 +1460,7 @@ IMPLEMENT_FUNCTION(27, Coudert, function27)
 			getEntities()->clearSequences(kEntityCoudert);
 
 			setCallback(8);
-			setup_function20(kObjectCompartmentC, kObject50);
+			setup_makeBed(kObjectCompartmentC, kObject50);
 			break;
 
 		case 8:
@@ -1494,17 +1494,17 @@ IMPLEMENT_FUNCTION(27, Coudert, function27)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(28, Coudert, visitCompartmentB)
+IMPLEMENT_FUNCTION(28, Coudert, makeBedTatiana)
 	visitCompartment(savepoint, kPosition_7500, "627Vb", kObjectCompartmentB, "627Wb", "627Zb", kPosition_7850, kObject49, "697Ab");
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(29, Coudert, visitCompartmentA)
+IMPLEMENT_FUNCTION(29, Coudert, makeBedVassili)
 	visitCompartment(savepoint, kPosition_8200, "627Ma", kObjectCompartmentA, "627Na", "627Ra", kPosition_7850, kObject48, "627Sa");
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(30, Coudert, function30, ObjectIndex)
+IMPLEMENT_FUNCTION_I(30, Coudert, cathBuzzing, ObjectIndex)
 	// Expose parameters as IIIIIS and ignore the default exposed parameters
 	EntityData::EntityParametersI5S  *parameters  = (EntityData::EntityParametersI5S*)_data->getCurrentParameters();
 	EntityData::EntityParametersSIIS *parameters1 = (EntityData::EntityParametersSIIS*)_data->getCurrentParameters(1);
@@ -1568,7 +1568,7 @@ IMPLEMENT_FUNCTION_I(30, Coudert, function30, ObjectIndex)
 		}
 
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -1612,7 +1612,7 @@ IMPLEMENT_FUNCTION_I(30, Coudert, function30, ObjectIndex)
 
 		case 5:
 			setCallback(6);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 6:
@@ -1624,14 +1624,14 @@ IMPLEMENT_FUNCTION_I(30, Coudert, function30, ObjectIndex)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(31, Coudert, function31, uint32)
+IMPLEMENT_FUNCTION_I(31, Coudert, cathRattling, uint32)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionEndSound:
 		setCallback(3);
-		setup_function19(true);
+		setup_sitDownFast(true);
 		break;
 
 	case kActionDefault:
@@ -1649,7 +1649,7 @@ IMPLEMENT_FUNCTION_I(31, Coudert, function31, uint32)
 				getEntities()->drawSequenceLeft(kEntityCoudert, "627K");
 			} else {
 				setCallback(2);
-				setup_function19(true);
+				setup_sitDownFast(true);
 			}
 			break;
 
@@ -1663,14 +1663,14 @@ IMPLEMENT_FUNCTION_I(31, Coudert, function31, uint32)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(32, Coudert, function32)
+IMPLEMENT_FUNCTION(32, Coudert, bathroomTrip)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -1696,7 +1696,7 @@ IMPLEMENT_FUNCTION(32, Coudert, function32)
 
 		case 4:
 			setCallback(5);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 5:
@@ -1708,7 +1708,7 @@ IMPLEMENT_FUNCTION(32, Coudert, function32)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(33, Coudert, function33)
+IMPLEMENT_FUNCTION(33, Coudert, doPending)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1740,7 +1740,7 @@ IMPLEMENT_FUNCTION(33, Coudert, function33)
 			ENTITY_PARAM(2, 1) = 1;
 			if (ENTITY_PARAM(0, 3)) {
 				setCallback(2);
-				setup_function14(kEntityVerges);
+				setup_listen(kEntityVerges);
 				break;
 			}
 			// fall through
@@ -1748,7 +1748,7 @@ IMPLEMENT_FUNCTION(33, Coudert, function33)
 		case 2:
 			if (ENTITY_PARAM(0, 5)) {
 				setCallback(3);
-				setup_function14(kEntityMertens);
+				setup_listen(kEntityMertens);
 				break;
 			}
 			// fall through
@@ -1756,7 +1756,7 @@ IMPLEMENT_FUNCTION(33, Coudert, function33)
 		case 3:
 			if (ENTITY_PARAM(0, 4)) {
 				setCallback(4);
-				setup_function14(kEntityMmeBoutarel);
+				setup_listen(kEntityMmeBoutarel);
 				break;
 			}
 			// fall through
@@ -1777,7 +1777,7 @@ IMPLEMENT_FUNCTION(33, Coudert, function33)
 		case 6:
 			if (ENTITY_PARAM(0, 6) || ENTITY_PARAM(0, 7)) {
 				setCallback(7);
-				setup_function37();
+				setup_respondVassili();
 				break;
 			}
 			// fall through
@@ -1785,7 +1785,7 @@ IMPLEMENT_FUNCTION(33, Coudert, function33)
 		case 7:
 			if (ENTITY_PARAM(2, 2)) {
 				setCallback(8);
-				setup_function39();
+				setup_afterPolice();
 				break;
 			}
 			// fall through
@@ -1793,7 +1793,7 @@ IMPLEMENT_FUNCTION(33, Coudert, function33)
 		case 8:
 			if (ENTITY_PARAM(1, 2)) {
 				setCallback(9);
-				setup_function55();
+				setup_serviceAnna();
 				break;
 			}
 			// fall through
@@ -1801,7 +1801,7 @@ IMPLEMENT_FUNCTION(33, Coudert, function33)
 		case 9:
 			if (ENTITY_PARAM(1, 7)) {
 				setCallback(10);
-				setup_function34(false);
+				setup_takeMaxBack(false);
 				break;
 			}
 			// fall through
@@ -1817,14 +1817,14 @@ IMPLEMENT_FUNCTION(33, Coudert, function33)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(34, Coudert, function34, bool)
+IMPLEMENT_FUNCTION_I(34, Coudert, takeMaxBack, bool)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -1845,7 +1845,7 @@ IMPLEMENT_FUNCTION_I(34, Coudert, function34, bool)
 				ENTITY_PARAM(1, 4) = 0;
 
 				setCallback(7);
-				setup_function35((bool)params->param1);
+				setup_returnMax((bool)params->param1);
 			} else {
 				getEntities()->drawSequenceLeft(kEntityCoudert, "627Vf");
 				getEntities()->enterCompartment(kEntityCoudert, kObjectCompartmentF, true);
@@ -1879,7 +1879,7 @@ IMPLEMENT_FUNCTION_I(34, Coudert, function34, bool)
 			ENTITY_PARAM(1, 4) = 0;
 
 			setCallback(7);
-			setup_function35((bool)params->param1);
+			setup_returnMax((bool)params->param1);
 			break;
 
 		case 7:
@@ -1891,7 +1891,7 @@ IMPLEMENT_FUNCTION_I(34, Coudert, function34, bool)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(35, Coudert, function35, bool)
+IMPLEMENT_FUNCTION_I(35, Coudert, returnMax, bool)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1949,7 +1949,7 @@ IMPLEMENT_FUNCTION_I(35, Coudert, function35, bool)
 
 		case 3:
 			setCallback(4);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 4:
@@ -1967,7 +1967,7 @@ IMPLEMENT_FUNCTION(36, Coudert, chapter1)
 		break;
 
 	case kActionNone:
-		Entity::timeCheckCallback(kTimeChapter1, params->param1, 1, WRAP_SETUP_FUNCTION(Coudert, setup_function18));
+		Entity::timeCheckCallback(kTimeChapter1, params->param1, 1, WRAP_SETUP_FUNCTION(Coudert, setup_sitDown));
 		break;
 
 	case kActionDefault:
@@ -2000,13 +2000,13 @@ IMPLEMENT_FUNCTION(36, Coudert, chapter1)
 
 	case kActionCallback:
 		if (getCallback() == 1)
-			setup_chapter1Handler();
+			setup_sittingChapter1();
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(37, Coudert, function37)
+IMPLEMENT_FUNCTION(37, Coudert, respondVassili)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2022,7 +2022,7 @@ IMPLEMENT_FUNCTION(37, Coudert, function37)
 			setup_enterExitCompartment2("698Ha", kObjectCompartmentA, kPosition_8200, kPosition_7850);
 		} else {
 			setCallback(1);
-			setup_function16();
+			setup_getUp();
 		}
 		break;
 
@@ -2051,7 +2051,7 @@ IMPLEMENT_FUNCTION(37, Coudert, function37)
 			getObjects()->update(kObjectCompartmentA, kEntityPlayer, kObjectLocation2, kCursorKeepValue, kCursorKeepValue);
 			getData()->location = kLocationInsideCompartment;
 			getEntities()->clearSequences(kEntityCoudert);
-			setup_function38();
+			setup_atSeizure();
 			break;
 		}
 		break;
@@ -2059,7 +2059,7 @@ IMPLEMENT_FUNCTION(37, Coudert, function37)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(38, Coudert, function38)
+IMPLEMENT_FUNCTION(38, Coudert, atSeizure)
 switch (savepoint.action) {
 	default:
 		break;
@@ -2080,11 +2080,11 @@ switch (savepoint.action) {
 			ENTITY_PARAM(0, 7) = 0;
 
 			setCallback(2);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 2:
-			setup_chapter1Handler();
+			setup_sittingChapter1();
 			break;
 		}
 		break;
@@ -2101,7 +2101,7 @@ switch (savepoint.action) {
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(39, Coudert, function39)
+IMPLEMENT_FUNCTION(39, Coudert, afterPolice)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2118,7 +2118,7 @@ IMPLEMENT_FUNCTION(39, Coudert, function39)
 
 		case 1:
 			setCallback(2);
-			setup_function16();
+			setup_getUp();
 			break;
 
 		case 2:
@@ -2169,7 +2169,7 @@ IMPLEMENT_FUNCTION(39, Coudert, function39)
 
 		case 9:
 			setCallback(10);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 10:
@@ -2184,7 +2184,7 @@ IMPLEMENT_FUNCTION(39, Coudert, function39)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(40, Coudert, chapter1Handler)
+IMPLEMENT_FUNCTION(40, Coudert, sittingChapter1)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2216,7 +2216,7 @@ IMPLEMENT_FUNCTION(40, Coudert, chapter1Handler)
 			getData()->inventoryItem = kItemNone;
 
 			setCallback(4);
-			setup_function15(true);
+			setup_tatianaLockUnlockMyCompartment(true);
 			break;
 		}
 
@@ -2225,14 +2225,14 @@ label_callback_4:
 			getData()->inventoryItem = kItemNone;
 
 			setCallback(5);
-			setup_function15(false);
+			setup_tatianaLockUnlockMyCompartment(false);
 			break;
 		}
 
 label_callback_5:
 		if (ENTITY_PARAM(0, 6) || ENTITY_PARAM(0, 7)) {
 			getData()->inventoryItem = kItemNone;
-			setup_function37();
+			setup_respondVassili();
 			break;
 		}
 
@@ -2240,7 +2240,7 @@ label_callback_5:
 			getData()->inventoryItem = kItemNone;
 
 			setCallback(6);
-			setup_function14(kEntityVerges);
+			setup_listen(kEntityVerges);
 			break;
 		}
 
@@ -2249,7 +2249,7 @@ label_callback_6:
 			getData()->inventoryItem = kItemNone;
 
 			setCallback(7);
-			setup_function14(kEntityMertens);
+			setup_listen(kEntityMertens);
 			break;
 		}
 
@@ -2258,7 +2258,7 @@ label_callback_7:
 			getData()->inventoryItem = kItemNone;
 
 			setCallback(8);
-			setup_function14(kEntityMmeBoutarel);
+			setup_listen(kEntityMmeBoutarel);
 			break;
 		}
 
@@ -2267,7 +2267,7 @@ label_callback_8:
 			getData()->inventoryItem = kItemNone;
 
 			setCallback(9);
-			setup_function39();
+			setup_afterPolice();
 			break;
 		}
 
@@ -2279,7 +2279,7 @@ label_callback_9:
 			getData()->inventoryItem = kItemNone;
 
 			setCallback(10);
-			setup_function41();
+			setup_makeAllBeds();
 			break;
 		}
 
@@ -2315,7 +2315,7 @@ label_callback_10:
 			getData()->inventoryItem = kItemNone;
 
 			setCallback(13);
-			setup_function13((bool)savepoint.param.intValue, savepoint.entity2);
+			setup_passing((bool)savepoint.param.intValue, savepoint.entity2);
 		}
 		break;
 
@@ -2338,7 +2338,7 @@ label_callback_10:
 				setup_savegame(kSavegameTypeEvent, kEventCoudertBloodJacket);
 			} else {
 				setCallback(getEntities()->isPlayerPosition(kCarRedSleeping, 1) ? 2 : 3);
-				setup_function13(true, kEntityPlayer);
+				setup_passing(true, kEntityPlayer);
 			}
 		}
 		break;
@@ -2394,7 +2394,7 @@ label_callback_10:
 
 		case 14:
 			setCallback(15);
-			setup_function18();
+			setup_sitDown();
 			break;
 		}
 		break;
@@ -2413,7 +2413,7 @@ label_callback_10:
 		if (!ENTITY_PARAM(0, 1)) {
 			getData()->inventoryItem = kItemNone;
 			setCallback(16);
-			setup_function30((ObjectIndex)savepoint.param.intValue);
+			setup_cathBuzzing((ObjectIndex)savepoint.param.intValue);
 		}
 		break;
 
@@ -2426,21 +2426,21 @@ label_callback_10:
 		if (!ENTITY_PARAM(2, 1) && !ENTITY_PARAM(0, 1)) {
 			getData()->inventoryItem = kItemNone;
 			setCallback(17);
-			setup_function31(savepoint.param.intValue);
+			setup_cathRattling(savepoint.param.intValue);
 		}
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(41, Coudert, function41)
+IMPLEMENT_FUNCTION(41, Coudert, makeAllBeds)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -2450,79 +2450,79 @@ IMPLEMENT_FUNCTION(41, Coudert, function41)
 
 		case 1:
 			setCallback(2);
-			setup_visitCompartmentA();
+			setup_makeBedVassili();
 			break;
 
 		case 2:
 			setCallback(3);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 3:
 			setCallback(4);
-			setup_visitCompartmentB();
+			setup_makeBedTatiana();
 			break;
 
 		case 4:
 			setCallback(5);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 5:
 			setCallback(6);
-			setup_function27();
+			setup_makeBedMonsieur();
 			break;
 
 		case 6:
 			getSavePoints()->push(kEntityCoudert, kEntityRebecca, kAction285528346);
 
 			setCallback(7);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 7:
 			setCallback(8);
-			setup_function26();
+			setup_makeBedMadame();
 			break;
 
 		case 8:
 			setCallback(9);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 9:
 			setCallback(10);
-			setup_function25();
+			setup_makeBedRebecca();
 			break;
 
 		case 10:
 			setCallback(11);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 11:
 			setCallback(12);
-			setup_function23();
+			setup_tryMakeAnna();
 			break;
 
 		case 12:
 			setCallback(13);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 13:
 			setCallback(14);
-			setup_function22();
+			setup_makeBedMilos();
 			break;
 
 		case 14:
 			setCallback(15);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 15:
 			setCallback(16);
-			setup_function21();
+			setup_makeBedIvo();
 			break;
 
 		case 16:
@@ -2532,7 +2532,7 @@ IMPLEMENT_FUNCTION(41, Coudert, function41)
 
 		case 17:
 			setCallback(18);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 18:
@@ -2553,7 +2553,7 @@ IMPLEMENT_FUNCTION(42, Coudert, chapter2)
 
 	case kActionNone:
 		setCallback(1);
-		setup_function18();
+		setup_sitDown();
 		break;
 
 	case kActionDefault:
@@ -2586,13 +2586,13 @@ IMPLEMENT_FUNCTION(42, Coudert, chapter2)
 
 	case kActionCallback:
 		if (getCallback() == 1)
-			setup_function43();
+			setup_sittingChapter2();
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(43, Coudert, function43)
+IMPLEMENT_FUNCTION(43, Coudert, sittingChapter2)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2600,28 +2600,28 @@ IMPLEMENT_FUNCTION(43, Coudert, function43)
 	case kActionNone:
 		if (ENTITY_PARAM(0, 8)) {
 			setCallback(1);
-			setup_function15(true);
+			setup_tatianaLockUnlockMyCompartment(true);
 			break;
 		}
 
 label_callback1:
 		if (ENTITY_PARAM(1, 1)) {
 			setCallback(2);
-			setup_function15(false);
+			setup_tatianaLockUnlockMyCompartment(false);
 			break;
 		}
 
 label_callback2:
 		if (ENTITY_PARAM(0, 3)) {
 			setCallback(3);
-			setup_function14(kEntityVerges);
+			setup_listen(kEntityVerges);
 		}
 		break;
 
 	case kAction11:
 		if (!ENTITY_PARAM(2, 1)) {
 			setCallback(4);
-			setup_function13((bool)savepoint.param.intValue, savepoint.entity2);
+			setup_passing((bool)savepoint.param.intValue, savepoint.entity2);
 		}
 		break;
 
@@ -2631,11 +2631,11 @@ label_callback2:
 
 		if (getEntities()->isPlayerPosition(kCarRedSleeping, 1)) {
 			setCallback(5);
-			setup_function13(true, kEntityPlayer);
+			setup_passing(true, kEntityPlayer);
 
 		} else if (getEntities()->isPlayerPosition(kCarRedSleeping, 23)) {
 			setCallback(6);
-			setup_function13(false, kEntityPlayer);
+			setup_passing(false, kEntityPlayer);
 		}
 		break;
 
@@ -2652,7 +2652,7 @@ label_callback2:
 
 		case 7:
 			setCallback(8);
-			setup_function18();
+			setup_sitDown();
 			break;
 		}
 		break;
@@ -2660,7 +2660,7 @@ label_callback2:
 	case kAction225358684:
 		if (!ENTITY_PARAM(0, 1)) {
 			setCallback(9);
-			setup_function30((ObjectIndex)savepoint.param.intValue);
+			setup_cathBuzzing((ObjectIndex)savepoint.param.intValue);
 		}
 		break;
 
@@ -2676,7 +2676,7 @@ label_callback2:
 	case kAction305159806:
 		if (!ENTITY_PARAM(2, 1) && !ENTITY_PARAM(0, 1)) {
 			setCallback(10);
-			setup_function31(savepoint.param.intValue);
+			setup_cathRattling(savepoint.param.intValue);
 		}
 		break;
 	}
@@ -2690,7 +2690,7 @@ IMPLEMENT_FUNCTION(44, Coudert, chapter3)
 
 	case kActionNone:
 		setCallback(1);
-		setup_function18();
+		setup_sitDown();
 		break;
 
 	case kActionDefault:
@@ -2725,13 +2725,13 @@ IMPLEMENT_FUNCTION(44, Coudert, chapter3)
 
 	case kActionCallback:
 		if (getCallback() == 1)
-			setup_function45();
+			setup_sittingChapter3();
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(45, Coudert, function45)
+IMPLEMENT_FUNCTION(45, Coudert, sittingChapter3)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2739,84 +2739,84 @@ IMPLEMENT_FUNCTION(45, Coudert, function45)
 	case kActionNone:
 		if (ENTITY_PARAM(0, 8)) {
 			setCallback(1);
-			setup_function15(true);
+			setup_tatianaLockUnlockMyCompartment(true);
 			break;
 		}
 
 label_callback_1:
 		if (ENTITY_PARAM(1, 1)) {
 			setCallback(2);
-			setup_function15(false);
+			setup_tatianaLockUnlockMyCompartment(false);
 			break;
 		}
 
 label_callback_2:
 		if (ENTITY_PARAM(0, 3)) {
 			setCallback(3);
-			setup_function14(kEntityVerges);
+			setup_listen(kEntityVerges);
 			break;
 		}
 
 label_callback_3:
 		if (ENTITY_PARAM(0, 5)) {
 			setCallback(4);
-			setup_function14(kEntityMertens);
+			setup_listen(kEntityMertens);
 			break;
 		}
 
 label_callback_4:
 		if (ENTITY_PARAM(1, 3)) {
 			setCallback(5);
-			setup_function46();
+			setup_annaTakeMax();
 			break;
 		}
 
 label_callback_5:
 		if (ENTITY_PARAM(1, 5)) {
 			setCallback(6);
-			setup_function47(true);
+			setup_annaLockMe(true);
 			break;
 		}
 
 label_callback_6:
 		if (ENTITY_PARAM(1, 6)) {
 			setCallback(7);
-			setup_function47(false);
+			setup_annaLockMe(false);
 			break;
 		}
 
 label_callback_7:
 		if (ENTITY_PARAM(1, 8)) {
 			setCallback(8);
-			setup_function48();
+			setup_annaUnlockMe();
 			break;
 		}
 
 label_callback_8:
 		if (ENTITY_PARAM(2, 4)) {
 			setCallback(9);
-			setup_function49();
+			setup_inviteTatiana();
 			break;
 		}
 
 label_callback_9:
 		if (ENTITY_PARAM(1, 4)) {
 			setCallback(10);
-			setup_function34(true);
+			setup_takeMaxBack(true);
 			break;
 		}
 
 label_callback_10:
 		if (ENTITY_PARAM(1, 7)) {
 			setCallback(11);
-			setup_function34(false);
+			setup_takeMaxBack(false);
 			break;
 		}
 
 label_callback_11:
 		if (ENTITY_PARAM(0, 4)) {
 			setCallback(12);
-			setup_function14(kEntityMmeBoutarel);
+			setup_listen(kEntityMmeBoutarel);
 			break;
 		}
 
@@ -2824,32 +2824,32 @@ label_callback_12:
 		// BUG: Can never be called... FAIL!
 		if (ENTITY_PARAM(2, 5) && getState()->time > kTime2056500 && getState()->time < kTime1417500) {
 			setCallback(13);
-			setup_function50();
+			setup_inviteRebecca();
 			break;
 		}
 
 label_callback_13:
-		if (Entity::timeCheckCallback(kTime2088900, params->param1, 14, WRAP_SETUP_FUNCTION(Coudert, setup_function32)))
+		if (Entity::timeCheckCallback(kTime2088900, params->param1, 14, WRAP_SETUP_FUNCTION(Coudert, setup_bathroomTrip)))
 			break;
 
 label_callback_14:
-		if (Entity::timeCheckCallback(kTime2119500, params->param2, 15, WRAP_SETUP_FUNCTION(Coudert, setup_function32)))
+		if (Entity::timeCheckCallback(kTime2119500, params->param2, 15, WRAP_SETUP_FUNCTION(Coudert, setup_bathroomTrip)))
 			break;
 
 label_callback_15:
-		if (Entity::timeCheckCallback(kTime2138400, params->param3, 16, WRAP_SETUP_FUNCTION(Coudert, setup_function32)))
+		if (Entity::timeCheckCallback(kTime2138400, params->param3, 16, WRAP_SETUP_FUNCTION(Coudert, setup_bathroomTrip)))
 			break;
 
 label_callback_16:
-		if (Entity::timeCheckCallback(kTime2147400, params->param4, 17, WRAP_SETUP_FUNCTION(Coudert, setup_function32)))
+		if (Entity::timeCheckCallback(kTime2147400, params->param4, 17, WRAP_SETUP_FUNCTION(Coudert, setup_bathroomTrip)))
 			break;
 
 label_callback_17:
-		if (Entity::timeCheckCallback(kTime2160000, params->param5, 18, WRAP_SETUP_FUNCTION(Coudert, setup_function32)))
+		if (Entity::timeCheckCallback(kTime2160000, params->param5, 18, WRAP_SETUP_FUNCTION(Coudert, setup_bathroomTrip)))
 			break;
 
 label_callback_18:
-		if (Entity::timeCheckCallback(kTime2205000, params->param6, 19, WRAP_SETUP_FUNCTION(Coudert, setup_function32)))
+		if (Entity::timeCheckCallback(kTime2205000, params->param6, 19, WRAP_SETUP_FUNCTION(Coudert, setup_bathroomTrip)))
 			break;
 
 label_callback_19:
@@ -2863,7 +2863,7 @@ label_callback_19:
 	case kAction11:
 		if (!ENTITY_PARAM(2, 1)) {
 			setCallback(20);
-			setup_function13((bool)savepoint.param.intValue, savepoint.entity2);
+			setup_passing((bool)savepoint.param.intValue, savepoint.entity2);
 		}
 		break;
 
@@ -2871,10 +2871,10 @@ label_callback_19:
 		if (!ENTITY_PARAM(2, 1)) {
 			if (getEntities()->isPlayerPosition(kCarRedSleeping, 1)) {
 				setCallback(21);
-				setup_function13(true, kEntityPlayer);
+				setup_passing(true, kEntityPlayer);
 			} else if (getEntities()->isPlayerPosition(kCarRedSleeping, 23)) {
 				setCallback(22);
-				setup_function13(false, kEntityPlayer);
+				setup_passing(false, kEntityPlayer);
 			}
 		}
 		break;
@@ -2944,7 +2944,7 @@ label_callback_19:
 
 		case 23:
 			setCallback(24);
-			setup_function18();
+			setup_sitDown();
 			break;
 		}
 		break;
@@ -2952,7 +2952,7 @@ label_callback_19:
 	case kAction225358684:
 		if (!ENTITY_PARAM(0, 1)) {
 			setCallback(25);
-			setup_function30((ObjectIndex)savepoint.param.intValue);
+			setup_cathBuzzing((ObjectIndex)savepoint.param.intValue);
 		}
 		break;
 
@@ -2968,21 +2968,21 @@ label_callback_19:
 	case kAction305159806:
 		if (!ENTITY_PARAM(2, 1) && !ENTITY_PARAM(0, 1)) {
 			setCallback(26);
-			setup_function31(savepoint.param.intValue);
+			setup_cathRattling(savepoint.param.intValue);
 		}
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(46, Coudert, function46)
+IMPLEMENT_FUNCTION(46, Coudert, annaTakeMax)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -3055,7 +3055,7 @@ IMPLEMENT_FUNCTION(46, Coudert, function46)
 			ENTITY_PARAM(1, 3) = 0;
 
 			setCallback(11);
-			setup_function35(true);
+			setup_returnMax(true);
 			break;
 
 		case 11:
@@ -3067,14 +3067,14 @@ IMPLEMENT_FUNCTION(46, Coudert, function46)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(47, Coudert, function47, bool)
+IMPLEMENT_FUNCTION_I(47, Coudert, annaLockMe, bool)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -3120,7 +3120,7 @@ IMPLEMENT_FUNCTION_I(47, Coudert, function47, bool)
 			ENTITY_PARAM(1, 6) = 0;
 
 			setCallback(7);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 7:
@@ -3132,14 +3132,14 @@ IMPLEMENT_FUNCTION_I(47, Coudert, function47, bool)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(48, Coudert, function48)
+IMPLEMENT_FUNCTION(48, Coudert, annaUnlockMe)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -3168,7 +3168,7 @@ IMPLEMENT_FUNCTION(48, Coudert, function48)
 		case 4:
 			ENTITY_PARAM(1, 8) = 0;
 			setCallback(5);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 5:
@@ -3180,14 +3180,14 @@ IMPLEMENT_FUNCTION(48, Coudert, function48)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(49, Coudert, function49)
+IMPLEMENT_FUNCTION(49, Coudert, inviteTatiana)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -3265,7 +3265,7 @@ IMPLEMENT_FUNCTION(49, Coudert, function49)
 			ENTITY_PARAM(2, 5) = 1;
 
 			setCallback(11);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 11:
@@ -3277,14 +3277,14 @@ IMPLEMENT_FUNCTION(49, Coudert, function49)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(50, Coudert, function50)
+IMPLEMENT_FUNCTION(50, Coudert, inviteRebecca)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -3351,7 +3351,7 @@ IMPLEMENT_FUNCTION(50, Coudert, function50)
 			ENTITY_PARAM(2, 5) = 0;
 
 			setCallback(9);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 9:
@@ -3363,7 +3363,7 @@ IMPLEMENT_FUNCTION(50, Coudert, function50)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(51, Coudert, function51)
+IMPLEMENT_FUNCTION(51, Coudert, tatianaComeHere)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3428,23 +3428,23 @@ IMPLEMENT_FUNCTION(51, Coudert, function51)
 
 		case 1:
 			setCallback(2);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 2:
 		case 4:
 		case 6:
-			setup_function45();
+			setup_sittingChapter3();
 			break;
 
 		case 3:
 			setCallback(4);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 5:
 			setCallback(6);
-			setup_function18();
+			setup_sitDown();
 			break;
 		}
 		break;
@@ -3473,7 +3473,7 @@ IMPLEMENT_FUNCTION(52, Coudert, chapter4)
 
 	case kActionNone:
 		setCallback(1);
-		setup_function18();
+		setup_sitDown();
 		break;
 
 	case kActionDefault:
@@ -3508,14 +3508,14 @@ IMPLEMENT_FUNCTION(52, Coudert, chapter4)
 	case kActionCallback:
 		if (getCallback() == 1) {
 			ENTITY_PARAM(1, 2) = 1;
-			setup_function53();
+			setup_onDuty4();
 		}
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(53, Coudert, function53)
+IMPLEMENT_FUNCTION(53, Coudert, onDuty4)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3539,7 +3539,7 @@ IMPLEMENT_FUNCTION(53, Coudert, function53)
 			ENTITY_PARAM(2, 3) = 0;
 
 			setCallback(1);
-			setup_function54();
+			setup_waitBombDefused();
 			break;
 		}
 
@@ -3551,7 +3551,7 @@ label_callback_1:
 			if (params->param3 != kTimeInvalid) {
 				if (Entity::updateParameterTime((TimeValue)params->param2, !getEntities()->isPlayerInCar(kCarRedSleeping), params->param3, 0)) {
 					setCallback(2);
-					setup_function55();
+					setup_serviceAnna();
 					break;
 				}
 			}
@@ -3560,21 +3560,21 @@ label_callback_1:
 label_callback_2:
 		if (ENTITY_PARAM(1, 7)) {
 			setCallback(3);
-			setup_function34(false);
+			setup_takeMaxBack(false);
 			break;
 		}
 
 label_callback_3:
 		if (!params->param1) {
-			if (Entity::timeCheckCallback(kTime2394000, params->param4, 4, WRAP_SETUP_FUNCTION(Coudert, setup_function56)))
+			if (Entity::timeCheckCallback(kTime2394000, params->param4, 4, WRAP_SETUP_FUNCTION(Coudert, setup_makeAllBedsChapter4)))
 				break;
 
 label_callback_4:
-			if (Entity::timeCheckCallback(kTime2434500, params->param5, 5, WRAP_SETUP_FUNCTION(Coudert, setup_function32)))
+			if (Entity::timeCheckCallback(kTime2434500, params->param5, 5, WRAP_SETUP_FUNCTION(Coudert, setup_bathroomTrip)))
 				break;
 
 label_callback_5:
-			if (Entity::timeCheckCallback(kTime2448000, params->param6, 6, WRAP_SETUP_FUNCTION(Coudert, setup_function32)))
+			if (Entity::timeCheckCallback(kTime2448000, params->param6, 6, WRAP_SETUP_FUNCTION(Coudert, setup_bathroomTrip)))
 				break;
 		}
 
@@ -3595,7 +3595,7 @@ label_callback_6:
 	case kAction11:
 		if (!ENTITY_PARAM(2, 1) && !ENTITY_PARAM(0, 1)) {
 			setCallback(7);
-			setup_function13((bool)savepoint.param.intValue, savepoint.entity2);
+			setup_passing((bool)savepoint.param.intValue, savepoint.entity2);
 		}
 		break;
 
@@ -3611,10 +3611,10 @@ label_callback_6:
 		if (!ENTITY_PARAM(2, 1) && !ENTITY_PARAM(0, 1)) {
 			if (getEntities()->isPlayerPosition(kCarRedSleeping, 1)) {
 				setCallback(8);
-				setup_function13(true, kEntityPlayer);
+				setup_passing(true, kEntityPlayer);
 			} else if (getEntities()->isPlayerPosition(kCarRedSleeping, 23)) {
 				setCallback(9);
-				setup_function13(false, kEntityPlayer);
+				setup_passing(false, kEntityPlayer);
 			}
 		}
 		break;
@@ -3644,7 +3644,7 @@ label_callback_6:
 
 		case 10:
 			setCallback(11);
-			setup_function18();
+			setup_sitDown();
 			break;
 		}
 		break;
@@ -3652,7 +3652,7 @@ label_callback_6:
 	case kAction225358684:
 		if (!ENTITY_PARAM(0, 1)) {
 			setCallback(12);
-			setup_function30((ObjectIndex)savepoint.param.intValue);
+			setup_cathBuzzing((ObjectIndex)savepoint.param.intValue);
 		}
 		break;
 
@@ -3668,14 +3668,14 @@ label_callback_6:
 	case kAction305159806:
 		if (!ENTITY_PARAM(2, 1) && !ENTITY_PARAM(0, 1)) {
 			setCallback(13);
-			setup_function31(savepoint.param.intValue);
+			setup_cathRattling(savepoint.param.intValue);
 		}
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(54, Coudert, function54)
+IMPLEMENT_FUNCTION(54, Coudert, waitBombDefused)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3704,7 +3704,7 @@ IMPLEMENT_FUNCTION(54, Coudert, function54)
 
 		case 2:
 			setCallback(3);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 3:
@@ -3721,7 +3721,7 @@ IMPLEMENT_FUNCTION(54, Coudert, function54)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(55, Coudert, function55)
+IMPLEMENT_FUNCTION(55, Coudert, serviceAnna)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3738,7 +3738,7 @@ IMPLEMENT_FUNCTION(55, Coudert, function55)
 
 		case 1:
 			setCallback(2);
-			setup_function16();
+			setup_getUp();
 			break;
 
 		case 2:
@@ -3772,7 +3772,7 @@ IMPLEMENT_FUNCTION(55, Coudert, function55)
 			ENTITY_PARAM(1, 2) = 0;
 
 			setCallback(7);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 7:
@@ -3789,14 +3789,14 @@ IMPLEMENT_FUNCTION(55, Coudert, function55)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(56, Coudert, function56)
+IMPLEMENT_FUNCTION(56, Coudert, makeAllBedsChapter4)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function16();
+		setup_getUp();
 		break;
 
 	case kActionCallback:
@@ -3806,67 +3806,67 @@ IMPLEMENT_FUNCTION(56, Coudert, function56)
 
 		case 1:
 			setCallback(2);
-			setup_function21();
+			setup_makeBedIvo();
 			break;
 
 		case 2:
 			setCallback(3);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 3:
 			setCallback(4);
-			setup_function22();
+			setup_makeBedMilos();
 			break;
 
 		case 4:
 			setCallback(5);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 5:
 			setCallback(6);
-			setup_visitCompartmentF();
+			setup_makeBedAnna();
 			break;
 
 		case 6:
 			setCallback(7);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 7:
 			setCallback(8);
-			setup_function25();
+			setup_makeBedRebecca();
 			break;
 
 		case 8:
 			setCallback(9);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 9:
 			setCallback(10);
-			setup_function26();
+			setup_makeBedMadame();
 			break;
 
 		case 10:
 			setCallback(11);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 11:
 			setCallback(12);
-			setup_function27();
+			setup_makeBedMonsieur();
 			break;
 
 		case 12:
 			setCallback(13);
-			setup_function33();
+			setup_doPending();
 			break;
 
 		case 13:
 			setCallback(14);
-			setup_visitCompartmentB();
+			setup_makeBedTatiana();
 			break;
 
 		case 14:
@@ -3876,7 +3876,7 @@ IMPLEMENT_FUNCTION(56, Coudert, function56)
 
 		case 15:
 			setCallback(16);
-			setup_function18();
+			setup_sitDown();
 			break;
 
 		case 16:
@@ -3911,11 +3911,11 @@ IMPLEMENT_FUNCTION_END
 //////////////////////////////////////////////////////////////////////////
 IMPLEMENT_FUNCTION(58, Coudert, chapter5Handler)
 	if (savepoint.action == kActionProceedChapter5)
-		setup_function59();
+		setup_returnSeat();
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(59, Coudert, function59)
+IMPLEMENT_FUNCTION(59, Coudert, returnSeat)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3934,21 +3934,21 @@ IMPLEMENT_FUNCTION(59, Coudert, function59)
 	case kActionCallback:
 		if (getCallback() == 1) {
 			getEntities()->drawSequenceLeft(kEntityCoudert, "627K");
-			setup_function60();
+			setup_waitingChapter5();
 		}
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(60, Coudert, function60)
+IMPLEMENT_FUNCTION(60, Coudert, waitingChapter5)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionCallback:
 		if (getCallback() == 1)
-			setup_function61();
+			setup_makeRounds();
 		break;
 
 	case kAction155991520:
@@ -3959,7 +3959,7 @@ IMPLEMENT_FUNCTION(60, Coudert, function60)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(61, Coudert, function61)
+IMPLEMENT_FUNCTION(61, Coudert, makeRounds)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -4031,7 +4031,7 @@ IMPLEMENT_FUNCTION(61, Coudert, function61)
 			getEntities()->clearSequences(kEntityCoudert);
 			getSavePoints()->push(kEntityCoudert, kEntityPascale, kAction169750080);
 
-			setup_function62();
+			setup_inCompartmentH();
 			break;
 		}
 		break;
@@ -4039,7 +4039,7 @@ IMPLEMENT_FUNCTION(61, Coudert, function61)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(62, Coudert, function62)
+IMPLEMENT_FUNCTION(62, Coudert, inCompartmentH)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -4171,7 +4171,7 @@ void Coudert::visitCompartment(const SavePoint &savepoint, EntityPosition positi
 			getEntities()->clearSequences(kEntityCoudert);
 
 			setCallback(5);
-			setup_function20(compartment, object);
+			setup_makeBed(compartment, object);
 			break;
 
 		case 5:

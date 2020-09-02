@@ -1609,7 +1609,7 @@ IMPLEMENT_FUNCTION(41, Tatiana, trapCath)
 		getData()->entityPosition = kPosition_7500;
 		getData()->location = kLocationOutsideCompartment;
 
-		RESET_ENTITY_STATE(kEntityCoudert, Coudert, setup_function51);
+		RESET_ENTITY_STATE(kEntityCoudert, Coudert, setup_tatianaComeHere);
 
 		getEntities()->drawSequenceLeft(kEntityTatiana, "673Fb");
 		getEntities()->enterCompartment(kEntityTatiana, kObjectCompartmentB, true);

@@ -114,104 +114,81 @@ public:
 	DECLARE_FUNCTION_1(updateFromTicks, uint32 ticks)
 
 	DECLARE_FUNCTION_1(excuseMe, EntityIndex entity)
-	DECLARE_FUNCTION_2(function13, bool, EntityIndex entity)
-	DECLARE_FUNCTION_1(function14, EntityIndex entity)
-	DECLARE_FUNCTION_1(function15, bool)
-	DECLARE_FUNCTION(function16)
-	DECLARE_FUNCTION_1(function17, bool)
-	DECLARE_FUNCTION(function18)
-	DECLARE_FUNCTION_1(function19, bool)
-
-	/**
-	 * ???
-	 *
-	 * @param object1 The first object index
-	 * @param object2 The second object index
-	 */
-	DECLARE_FUNCTION_2(function20, ObjectIndex object1, ObjectIndex object2)
-
-	DECLARE_FUNCTION(function21)
-	DECLARE_FUNCTION(function22)
-	DECLARE_FUNCTION(function23)
-	DECLARE_FUNCTION(visitCompartmentF)
-	DECLARE_FUNCTION(function25)
-	DECLARE_FUNCTION(function26)
-	DECLARE_FUNCTION(function27)
-	DECLARE_FUNCTION(visitCompartmentB)
-	DECLARE_FUNCTION(visitCompartmentA)
-
-	/**
-	 * ???
-	 *
-	 * @param compartment The compartment
-	 */
-	DECLARE_FUNCTION_1(function30, ObjectIndex compartment)
-
-	DECLARE_FUNCTION_1(function31, uint32)
-	DECLARE_FUNCTION(function32)
-	DECLARE_FUNCTION(function33)
-	DECLARE_FUNCTION_1(function34, bool)
-	DECLARE_FUNCTION_1(function35, bool)
+	DECLARE_FUNCTION_2(passing, bool, EntityIndex entity)
+	DECLARE_FUNCTION_1(listen, EntityIndex entity)
+	DECLARE_FUNCTION_1(tatianaLockUnlockMyCompartment, bool)
+	DECLARE_FUNCTION(getUp)
+	DECLARE_FUNCTION_1(getUpListen, bool)
+	DECLARE_FUNCTION(sitDown)
+	DECLARE_FUNCTION_1(sitDownFast, bool)
+	DECLARE_FUNCTION_2(makeBed, ObjectIndex object1, ObjectIndex object2)
+	DECLARE_FUNCTION(makeBedIvo)
+	DECLARE_FUNCTION(makeBedMilos)
+	DECLARE_FUNCTION(tryMakeAnna)
+	DECLARE_FUNCTION(makeBedAnna)
+	DECLARE_FUNCTION(makeBedRebecca)
+	DECLARE_FUNCTION(makeBedMadame)
+	DECLARE_FUNCTION(makeBedMonsieur)
+	DECLARE_FUNCTION(makeBedTatiana)
+	DECLARE_FUNCTION(makeBedVassili)
+	DECLARE_FUNCTION_1(cathBuzzing, ObjectIndex compartment)
+	DECLARE_FUNCTION_1(cathRattling, uint32)
+	DECLARE_FUNCTION(bathroomTrip)
+	DECLARE_FUNCTION(doPending)
+	DECLARE_FUNCTION_1(takeMaxBack, bool)
+	DECLARE_FUNCTION_1(returnMax, bool)
 
 	/**
 	 * Setup Chapter 1
 	 */
 	DECLARE_VFUNCTION(chapter1)
-	DECLARE_FUNCTION(function37)
-	DECLARE_FUNCTION(function38)
-	DECLARE_FUNCTION(function39)
-
-	/**
-	 * Handle Chapter 1 events
-	 */
-	DECLARE_FUNCTION(chapter1Handler)
-
-	DECLARE_FUNCTION(function41)
+    
+	DECLARE_FUNCTION(respondVassili)
+	DECLARE_FUNCTION(atSeizure)
+	DECLARE_FUNCTION(afterPolice)
+	DECLARE_FUNCTION(sittingChapter1)
+	DECLARE_FUNCTION(makeAllBeds)
 
 	/**
 	 * Setup Chapter 2
 	 */
 	DECLARE_VFUNCTION(chapter2)
 
-	DECLARE_FUNCTION(function43)
+	DECLARE_FUNCTION(sittingChapter2)
 
 	/**
 	 * Setup Chapter 3
 	 */
 	DECLARE_VFUNCTION(chapter3)
 
-	DECLARE_FUNCTION(function45)
-	DECLARE_FUNCTION(function46)
-	DECLARE_FUNCTION_1(function47, bool)
-	DECLARE_FUNCTION(function48)
-	DECLARE_FUNCTION(function49)
-	DECLARE_FUNCTION(function50)
-	DECLARE_FUNCTION(function51)
+	DECLARE_FUNCTION(sittingChapter3)
+	DECLARE_FUNCTION(annaTakeMax)
+	DECLARE_FUNCTION_1(annaLockMe, bool)
+	DECLARE_FUNCTION(annaUnlockMe)
+	DECLARE_FUNCTION(inviteTatiana)
+	DECLARE_FUNCTION(inviteRebecca)
+	DECLARE_FUNCTION(tatianaComeHere)
 
 	/**
 	 * Setup Chapter 4
 	 */
 	DECLARE_VFUNCTION(chapter4)
 
-	DECLARE_FUNCTION(function53)
-	DECLARE_FUNCTION(function54)
-	DECLARE_FUNCTION(function55)
-	DECLARE_FUNCTION(function56)
+	DECLARE_FUNCTION(onDuty4)
+	DECLARE_FUNCTION(waitBombDefused)
+	DECLARE_FUNCTION(serviceAnna)
+	DECLARE_FUNCTION(makeAllBedsChapter4)
 
 	/**
 	 * Setup Chapter 5
 	 */
 	DECLARE_VFUNCTION(chapter5)
 
-	/**
-	 * Handle Chapter 5 events
-	 */
 	DECLARE_FUNCTION(chapter5Handler)
-
-	DECLARE_FUNCTION(function59)
-	DECLARE_FUNCTION(function60)
-	DECLARE_FUNCTION(function61)
-	DECLARE_FUNCTION(function62)
+	DECLARE_FUNCTION(returnSeat)
+	DECLARE_FUNCTION(waitingChapter5)
+	DECLARE_FUNCTION(makeRounds)
+	DECLARE_FUNCTION(inCompartmentH)
 
 	DECLARE_NULL_FUNCTION()
 

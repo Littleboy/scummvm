@@ -58,59 +58,59 @@ August::August(LastExpressEngine *engine) : Entity(engine, kEntityAugust) {
 	ADD_CALLBACK_FUNCTION(August, callbackActionRestaurantOrSalon);
 	ADD_CALLBACK_FUNCTION_II(August, savegame);
 	ADD_CALLBACK_FUNCTION_II(August, updateEntity);
-	ADD_CALLBACK_FUNCTION_I(August, function17);
+	ADD_CALLBACK_FUNCTION_I(August, lookingForCath);
 	ADD_CALLBACK_FUNCTION_II(August, updateEntity2);
-	ADD_CALLBACK_FUNCTION_TYPE(August, function19, EntityParametersIISS);
-	ADD_CALLBACK_FUNCTION_TYPE(August, function20, EntityParametersISSI);
-	ADD_CALLBACK_FUNCTION_I(August, function21);
+	ADD_CALLBACK_FUNCTION_TYPE(August, enterCompartment, EntityParametersIISS);
+	ADD_CALLBACK_FUNCTION_TYPE(August, exitCompartment, EntityParametersISSI);
+	ADD_CALLBACK_FUNCTION_I(August, compartmentLogic);
 	ADD_CALLBACK_FUNCTION(August, chapter1);
-	ADD_CALLBACK_FUNCTION_I(August, function23);
+	ADD_CALLBACK_FUNCTION_I(August, knockTyler);
 	ADD_CALLBACK_FUNCTION(August, dinner);
-	ADD_CALLBACK_FUNCTION(August, chapter1Handler);
-	ADD_CALLBACK_FUNCTION(August, function26);
-	ADD_CALLBACK_FUNCTION(August, function27);
-	ADD_CALLBACK_FUNCTION(August, function28);
-	ADD_CALLBACK_FUNCTION(August, function29);
-	ADD_CALLBACK_FUNCTION(August, restaurant);
-	ADD_CALLBACK_FUNCTION(August, function31);
-	ADD_CALLBACK_FUNCTION(August, function32);
-	ADD_CALLBACK_FUNCTION(August, function33);
+	ADD_CALLBACK_FUNCTION(August, waitTyler);
+	ADD_CALLBACK_FUNCTION(August, seekTyler);
+	ADD_CALLBACK_FUNCTION(August, goToDinner);
+	ADD_CALLBACK_FUNCTION(August, orderDinner);
+	ADD_CALLBACK_FUNCTION(August, eatingDinner);
+	ADD_CALLBACK_FUNCTION(August, greatAnna);
+	ADD_CALLBACK_FUNCTION(August, returnFromDinner);
+	ADD_CALLBACK_FUNCTION(August, goSalon);
+	ADD_CALLBACK_FUNCTION(August, backFromSalon);
 	ADD_CALLBACK_FUNCTION(August, function34);
 	ADD_CALLBACK_FUNCTION(August, chapter2);
-	ADD_CALLBACK_FUNCTION(August, chapter2Handler);
-	ADD_CALLBACK_FUNCTION(August, function37);
-	ADD_CALLBACK_FUNCTION(August, function38);
-	ADD_CALLBACK_FUNCTION(August, function39);
+	ADD_CALLBACK_FUNCTION(August, atBreakfast);
+	ADD_CALLBACK_FUNCTION(August, openCompartment);
+	ADD_CALLBACK_FUNCTION(August, inSalon2);
+	ADD_CALLBACK_FUNCTION(August, endChapter2);
 	ADD_CALLBACK_FUNCTION(August, chapter3);
 	ADD_CALLBACK_FUNCTION_II(August, function41);
 	ADD_CALLBACK_FUNCTION_III(August, function42);
-	ADD_CALLBACK_FUNCTION(August, chapter3Handler);
-	ADD_CALLBACK_FUNCTION(August, function44);
+	ADD_CALLBACK_FUNCTION(August, goLunch);
+	ADD_CALLBACK_FUNCTION(August, returnLunch);
 	ADD_CALLBACK_FUNCTION(August, function45);
-	ADD_CALLBACK_FUNCTION(August, function46);
-	ADD_CALLBACK_FUNCTION(August, function47);
-	ADD_CALLBACK_FUNCTION(August, function48);
-	ADD_CALLBACK_FUNCTION(August, function49);
+	ADD_CALLBACK_FUNCTION(August, reading);
+	ADD_CALLBACK_FUNCTION(August, bathroomTrip);
+	ADD_CALLBACK_FUNCTION(August, dressing);
+	ADD_CALLBACK_FUNCTION(August, goConcert);
 	ADD_CALLBACK_FUNCTION(August, function50);
-	ADD_CALLBACK_FUNCTION(August, function51);
-	ADD_CALLBACK_FUNCTION(August, function52);
-	ADD_CALLBACK_FUNCTION(August, function53);
-	ADD_CALLBACK_FUNCTION(August, function54);
-	ADD_CALLBACK_FUNCTION(August, function55);
-	ADD_CALLBACK_FUNCTION(August, function56);
+	ADD_CALLBACK_FUNCTION(August, stalkAnna);
+	ADD_CALLBACK_FUNCTION(August, afterConcert);
+	ADD_CALLBACK_FUNCTION(August, satisfied);
+	ADD_CALLBACK_FUNCTION(August, inSalon3);
+	ADD_CALLBACK_FUNCTION(August, leaveSalon);
+	ADD_CALLBACK_FUNCTION(August, beforeVienna);
 	ADD_CALLBACK_FUNCTION(August, chapter4);
-	ADD_CALLBACK_FUNCTION(August, chapter4Handler);
+	ADD_CALLBACK_FUNCTION(August, goToDinner4);
 	ADD_CALLBACK_FUNCTION(August, function59);
-	ADD_CALLBACK_FUNCTION(August, function60);
-	ADD_CALLBACK_FUNCTION(August, function61);
-	ADD_CALLBACK_FUNCTION(August, function62);
-	ADD_CALLBACK_FUNCTION(August, function63);
-	ADD_CALLBACK_FUNCTION(August, function64);
+	ADD_CALLBACK_FUNCTION(August, dinner4);
+	ADD_CALLBACK_FUNCTION(August, returnCompartment4);
+	ADD_CALLBACK_FUNCTION(August, goSalon4);
+	ADD_CALLBACK_FUNCTION(August, drinking);
+	ADD_CALLBACK_FUNCTION(August, drunk);
 	ADD_CALLBACK_FUNCTION(August, function65);
 	ADD_CALLBACK_FUNCTION(August, chapter5);
 	ADD_CALLBACK_FUNCTION(August, chapter5Handler);
-	ADD_CALLBACK_FUNCTION(August, function68);
-	ADD_CALLBACK_FUNCTION(August, unhookCars);
+	ADD_CALLBACK_FUNCTION(August, hiding);
+	ADD_CALLBACK_FUNCTION(August, cutCarsLoose);
 	ADD_NULL_FUNCTION();
 }
 
@@ -223,7 +223,7 @@ IMPLEMENT_FUNCTION_II(16, August, updateEntity, CarIndex, EntityPosition)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(17, August, function17, TimeValue)
+IMPLEMENT_FUNCTION_I(17, August, lookingForCath, TimeValue)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -327,7 +327,7 @@ IMPLEMENT_FUNCTION_II(18, August, updateEntity2, CarIndex, EntityPosition)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_II(19, August, function19, bool, bool)
+IMPLEMENT_FUNCTION_II(19, August, enterCompartment, bool, bool)
 	// Expose parameters as IISS and ignore the default exposed parameters
 	EntityData::EntityParametersIISS *parameters = (EntityData::EntityParametersIISS*)_data->getCurrentParameters();
 
@@ -420,7 +420,7 @@ IMPLEMENT_FUNCTION_II(19, August, function19, bool, bool)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(20, August, function20, bool)
+IMPLEMENT_FUNCTION_I(20, August, exitCompartment, bool)
 	// Expose parameters as ISSI and ignore the default exposed parameters
 	EntityData::EntityParametersISSI *parameters = (EntityData::EntityParametersISSI*)_data->getCurrentParameters();
 
@@ -522,7 +522,7 @@ IMPLEMENT_FUNCTION_I(20, August, function20, bool)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(21, August, function21, TimeValue)
+IMPLEMENT_FUNCTION_I(21, August, compartmentLogic, TimeValue)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -570,7 +570,7 @@ label_continue:
 			getData()->entityPosition = kPosition_8200;
 
 			setCallback(1);
-			setup_function20(false);
+			setup_exitCompartment(false);
 		}
 		break;
 
@@ -628,7 +628,7 @@ label_continue:
 
 		case 2:
 			setCallback(3);
-			setup_function23((TimeValue)(params->param1 - 2700));
+			setup_knockTyler((TimeValue)(params->param1 - 2700));
 			break;
 
 		case 3:
@@ -638,7 +638,7 @@ label_continue:
 
 		case 4:
 			setCallback(5);
-			setup_function19(false, false);
+			setup_enterCompartment(false, false);
 			break;
 
 		case 5:
@@ -770,7 +770,7 @@ IMPLEMENT_FUNCTION(22, August, chapter1)
 		break;
 
 	case kActionNone:
-		Entity::timeCheck(kTimeChapter1, params->param1, WRAP_SETUP_FUNCTION(August, setup_chapter1Handler));
+		Entity::timeCheck(kTimeChapter1, params->param1, WRAP_SETUP_FUNCTION(August, setup_waitTyler));
 		break;
 
 	case kActionDefault:
@@ -788,7 +788,7 @@ IMPLEMENT_FUNCTION(22, August, chapter1)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION_I(23, August, function23, TimeValue)
+IMPLEMENT_FUNCTION_I(23, August, knockTyler, TimeValue)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1121,7 +1121,7 @@ IMPLEMENT_FUNCTION(24, August, dinner)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(25, August, chapter1Handler)
+IMPLEMENT_FUNCTION(25, August, waitTyler)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1190,11 +1190,11 @@ IMPLEMENT_FUNCTION(25, August, chapter1Handler)
 			break;
 
 		case 2:
-			setup_function26();
+			setup_seekTyler();
 			break;
 
 		case 3:
-			setup_function28();
+			setup_orderDinner();
 			break;
 
 		case 4:
@@ -1231,7 +1231,7 @@ IMPLEMENT_FUNCTION(25, August, chapter1Handler)
 
 		case 7:
 			setCallback(8);
-			setup_function23(kTimeNone);
+			setup_knockTyler(kTimeNone);
 			break;
 
 		case 8:
@@ -1251,7 +1251,7 @@ IMPLEMENT_FUNCTION(25, August, chapter1Handler)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(26, August, function26)
+IMPLEMENT_FUNCTION(26, August, seekTyler)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1274,7 +1274,7 @@ IMPLEMENT_FUNCTION(26, August, function26)
 
 		case 1:
 			setCallback(2);
-			setup_function23((TimeValue)(getState()->time + 13500));
+			setup_knockTyler((TimeValue)(getState()->time + 13500));
 			break;
 
 		case 2:
@@ -1284,7 +1284,7 @@ IMPLEMENT_FUNCTION(26, August, function26)
 
 		case 3:
 			setCallback(4);
-			setup_function19(false, false);
+			setup_enterCompartment(false, false);
 			break;
 
 		case 4:
@@ -1292,21 +1292,21 @@ IMPLEMENT_FUNCTION(26, August, function26)
 				getProgress().field_14 = 0;
 
 			setCallback(7);
-			setup_function21((TimeValue)(getState()->time + 900));
+			setup_compartmentLogic((TimeValue)(getState()->time + 900));
 			break;
 
 		case 5:
 			setCallback(6);
-			setup_function19(false, false);
+			setup_enterCompartment(false, false);
 			break;
 
 		case 6:
 			setCallback(7);
-			setup_function21((TimeValue)(getState()->time + 900));
+			setup_compartmentLogic((TimeValue)(getState()->time + 900));
 			break;
 
 		case 7:
-			setup_function27();
+			setup_goToDinner();
 			break;
 		}
 		break;
@@ -1314,14 +1314,14 @@ IMPLEMENT_FUNCTION(26, August, function26)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(27, August, function27)
+IMPLEMENT_FUNCTION(27, August, goToDinner)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function20(false);
+		setup_exitCompartment(false);
 		break;
 
 	case kActionCallback:
@@ -1358,7 +1358,7 @@ IMPLEMENT_FUNCTION(27, August, function27)
 
 		case 5:
 			getData()->location = kLocationInsideCompartment;
-			setup_function28();
+			setup_orderDinner();
 			break;
 		}
 		break;
@@ -1366,7 +1366,7 @@ IMPLEMENT_FUNCTION(27, August, function27)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(28, August, function28)
+IMPLEMENT_FUNCTION(28, August, orderDinner)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1402,7 +1402,7 @@ IMPLEMENT_FUNCTION(28, August, function28)
 		case 2:
 			getSavePoints()->push(kEntityAugust, kEntityWaiter1, kAction136702400);
 			getEntities()->drawSequenceLeft(kEntityAugust, "010B");
-			setup_function29();
+			setup_eatingDinner();
 			break;
 		}
 		break;
@@ -1435,7 +1435,7 @@ IMPLEMENT_FUNCTION(28, August, function28)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(29, August, function29)
+IMPLEMENT_FUNCTION(29, August, eatingDinner)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1458,7 +1458,7 @@ IMPLEMENT_FUNCTION(29, August, function29)
 		getData()->inventoryItem = kItemNone;
 		getProgress().field_28 = 0;
 
-		setup_restaurant();
+		setup_greatAnna();
 		break;
 
 	case kAction1:
@@ -1497,7 +1497,7 @@ IMPLEMENT_FUNCTION(29, August, function29)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(30, August, restaurant)
+IMPLEMENT_FUNCTION(30, August, greatAnna)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1594,7 +1594,7 @@ IMPLEMENT_FUNCTION(30, August, restaurant)
 		case 9:
 			getSavePoints()->push(kEntityAugust, kEntityBoutarel, kAction134466544);
 
-			setup_function31();
+			setup_returnFromDinner();
 			break;
 
 		case 6:
@@ -1612,7 +1612,7 @@ IMPLEMENT_FUNCTION(30, August, restaurant)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(31, August, function31)
+IMPLEMENT_FUNCTION(31, August, returnFromDinner)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1629,21 +1629,21 @@ IMPLEMENT_FUNCTION(31, August, function31)
 
 		case 1:
 			setCallback(2);
-			setup_function19(false, false);
+			setup_enterCompartment(false, false);
 			break;
 
 		case 2:
 			setCallback(3);
-			setup_function21(kTime1161000);
+			setup_compartmentLogic(kTime1161000);
 			break;
 
 		case 3:
 		case 4:
 			if (getProgress().field_14 == 29) {
 				setCallback(4);
-				setup_function21((TimeValue)(getState()->time + 900));
+				setup_compartmentLogic((TimeValue)(getState()->time + 900));
 			} else {
-				setup_function32();
+				setup_goSalon();
 			}
 			break;
 		}
@@ -1652,7 +1652,7 @@ IMPLEMENT_FUNCTION(31, August, function31)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(32, August, function32)
+IMPLEMENT_FUNCTION(32, August, goSalon)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1691,7 +1691,7 @@ IMPLEMENT_FUNCTION(32, August, function32)
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function20(false);
+		setup_exitCompartment(false);
 		break;
 
 	case kActionDrawScene:
@@ -1743,11 +1743,11 @@ IMPLEMENT_FUNCTION(32, August, function32)
 
 		case 6:
 			setCallback(7);
-			setup_function19(false, false);
+			setup_enterCompartment(false, false);
 			break;
 
 		case 7:
-			setup_function33();
+			setup_backFromSalon();
 			break;
 		}
 		break;
@@ -1765,14 +1765,14 @@ IMPLEMENT_FUNCTION(32, August, function32)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(33, August, function33)
+IMPLEMENT_FUNCTION(33, August, backFromSalon)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(getProgress().eventMetAugust ? 1 : 2);
-		setup_function21(getProgress().eventMetAugust ? (TimeValue)(getState()->time + 9000) : kTimeBedTime);
+		setup_compartmentLogic(getProgress().eventMetAugust ? (TimeValue)(getState()->time + 9000) : kTimeBedTime);
 		break;
 
 	case kActionCallback:
@@ -1812,7 +1812,7 @@ IMPLEMENT_FUNCTION(35, August, chapter2)
 		break;
 
 	case kActionNone:
-		setup_chapter2Handler();
+		setup_atBreakfast();
 		break;
 
 	case kActionDefault:
@@ -1832,7 +1832,7 @@ IMPLEMENT_FUNCTION(35, August, chapter2)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(36, August, chapter2Handler)
+IMPLEMENT_FUNCTION(36, August, atBreakfast)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -1894,11 +1894,11 @@ IMPLEMENT_FUNCTION(36, August, chapter2Handler)
 
 		case 4:
 			setCallback(5);
-			setup_function19(true, false);
+			setup_enterCompartment(true, false);
 			break;
 
 		case 5:
-			setup_function37();
+			setup_openCompartment();
 			break;
 
 		case 6:
@@ -1923,13 +1923,13 @@ IMPLEMENT_FUNCTION(36, August, chapter2Handler)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(37, August, function37)
+IMPLEMENT_FUNCTION(37, August, openCompartment)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionNone:
-		Entity::timeCheckCallback(kTime1791000, params->param2, 5, true, WRAP_SETUP_FUNCTION_B(August, setup_function20));
+		Entity::timeCheckCallback(kTime1791000, params->param2, 5, true, WRAP_SETUP_FUNCTION_B(August, setup_exitCompartment));
 		break;
 
 	case kActionDefault:
@@ -1962,7 +1962,7 @@ IMPLEMENT_FUNCTION(37, August, function37)
 
 		case 2:
 			setCallback(3);
-			setup_function20(true);
+			setup_exitCompartment(true);
 			break;
 
 		case 3:
@@ -1973,7 +1973,7 @@ IMPLEMENT_FUNCTION(37, August, function37)
 
 		case 4:
 		case 6:
-			setup_function38();
+			setup_inSalon2();
 			break;
 		}
 		break;
@@ -1981,7 +1981,7 @@ IMPLEMENT_FUNCTION(37, August, function37)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(38, August, function38)
+IMPLEMENT_FUNCTION(38, August, inSalon2)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2027,11 +2027,11 @@ IMPLEMENT_FUNCTION(38, August, function38)
 			getInventory()->setLocationAndProcess(kItem3, kObjectLocation1);
 
 			setCallback(5);
-			setup_function17(kTime1849500);
+			setup_lookingForCath(kTime1849500);
 			break;
 
 		case 5:
-			setup_function39();
+			setup_endChapter2();
 			break;
 
 		case 6:
@@ -2078,7 +2078,7 @@ IMPLEMENT_FUNCTION(38, August, function38)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(39, August, function39)
+IMPLEMENT_FUNCTION(39, August, endChapter2)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2108,7 +2108,7 @@ IMPLEMENT_FUNCTION(40, August, chapter3)
 		break;
 
 	case kActionNone:
-		setup_chapter3Handler();
+		setup_goLunch();
 		break;
 
 	case kActionDefault:
@@ -2233,7 +2233,7 @@ IMPLEMENT_FUNCTION_III(42, August, function42, CarIndex, EntityPosition, bool)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(43, August, chapter3Handler)
+IMPLEMENT_FUNCTION(43, August, goLunch)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2251,7 +2251,7 @@ IMPLEMENT_FUNCTION(43, August, chapter3Handler)
 		if (getState()->time > kTime2016000 && !params->param1) {
 			if (getEntities()->isSomebodyInsideRestaurantOrSalon()) {
 				getData()->inventoryItem = kItemNone;
-				setup_function44();
+				setup_returnLunch();
 			}
 		}
 		break;
@@ -2265,7 +2265,7 @@ IMPLEMENT_FUNCTION(43, August, chapter3Handler)
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function20(true);
+		setup_exitCompartment(true);
 		break;
 
 	case kActionCallback:
@@ -2332,7 +2332,7 @@ IMPLEMENT_FUNCTION(43, August, chapter3Handler)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(44, August, function44)
+IMPLEMENT_FUNCTION(44, August, returnLunch)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2355,7 +2355,7 @@ IMPLEMENT_FUNCTION(44, August, function44)
 				setup_function41(kCarGreenSleeping, kPosition_6470);
 			} else {
 				setCallback(2);
-				setup_function17(kTime2043000);
+				setup_lookingForCath(kTime2043000);
 			}
 			break;
 
@@ -2386,7 +2386,7 @@ IMPLEMENT_FUNCTION(44, August, function44)
 
 		case 4:
 			setCallback(5);
-			setup_function19(true, false);
+			setup_enterCompartment(true, false);
 			break;
 
 		case 5:
@@ -2408,7 +2408,7 @@ IMPLEMENT_FUNCTION(45, August, function45)
 			params->param1 = 1;
 			getData()->inventoryItem = kItemNone;
 
-			setup_function46();
+			setup_reading();
 		}
 		break;
 
@@ -2427,13 +2427,13 @@ IMPLEMENT_FUNCTION(45, August, function45)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(46, August, function46)
+IMPLEMENT_FUNCTION(46, August, reading)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionNone:
-		Entity::timeCheckCallback(kTime2088000, params->param1, 1, WRAP_SETUP_FUNCTION(August, setup_function47));
+		Entity::timeCheckCallback(kTime2088000, params->param1, 1, WRAP_SETUP_FUNCTION(August, setup_bathroomTrip));
 		break;
 
 	case kActionDrawScene:
@@ -2449,7 +2449,7 @@ IMPLEMENT_FUNCTION(46, August, function46)
 			break;
 
 		case 1:
-			setup_function48();
+			setup_dressing();
 			break;
 
 		case 2:
@@ -2464,14 +2464,14 @@ IMPLEMENT_FUNCTION(46, August, function46)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(47, August, function47)
+IMPLEMENT_FUNCTION(47, August, bathroomTrip)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function20(true);
+		setup_exitCompartment(true);
 		break;
 
 	case kActionCallback:
@@ -2497,7 +2497,7 @@ IMPLEMENT_FUNCTION(47, August, function47)
 
 		case 4:
 			setCallback(5);
-			setup_function19(false, false);
+			setup_enterCompartment(false, false);
 			break;
 
 		case 5:
@@ -2509,13 +2509,13 @@ IMPLEMENT_FUNCTION(47, August, function47)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(48, August, function48)
+IMPLEMENT_FUNCTION(48, August, dressing)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionNone:
-		Entity::timeCheck(kTimeCityLinz, params->param1, WRAP_SETUP_FUNCTION(August, setup_function49));
+		Entity::timeCheck(kTimeCityLinz, params->param1, WRAP_SETUP_FUNCTION(August, setup_goConcert));
 		break;
 
 	case kActionKnock:
@@ -2546,11 +2546,11 @@ IMPLEMENT_FUNCTION(48, August, function48)
 			getScenes()->processScene();
 
 			setCallback(2);
-			setup_function21(kTimeCityLinz);
+			setup_compartmentLogic(kTimeCityLinz);
 			break;
 
 		case 2:
-			setup_function49();
+			setup_goConcert();
 			break;
 		}
 		break;
@@ -2558,14 +2558,14 @@ IMPLEMENT_FUNCTION(48, August, function48)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(49, August, function49)
+IMPLEMENT_FUNCTION(49, August, goConcert)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function20(false);
+		setup_exitCompartment(false);
 		break;
 
 	case kActionCallback:
@@ -2602,12 +2602,12 @@ IMPLEMENT_FUNCTION(50, August, function50)
 		break;
 
 	case kAction191668032:
-		setup_function51();
+		setup_stalkAnna();
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(51, August, function51)
+IMPLEMENT_FUNCTION(51, August, stalkAnna)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2645,7 +2645,7 @@ IMPLEMENT_FUNCTION(51, August, function51)
 		break;
 
 	case kAction122288808:
-		setup_function52();
+		setup_afterConcert();
 		break;
 
 	case kAction122358304:
@@ -2660,7 +2660,7 @@ IMPLEMENT_FUNCTION(51, August, function51)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(52, August, function52)
+IMPLEMENT_FUNCTION(52, August, afterConcert)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2710,7 +2710,7 @@ IMPLEMENT_FUNCTION(52, August, function52)
 
 		case 1:
 			setCallback(2);
-			setup_function19(false, true);
+			setup_enterCompartment(false, true);
 			break;
 
 		case 2:
@@ -2724,7 +2724,7 @@ IMPLEMENT_FUNCTION(52, August, function52)
 			RESET_ENTITY_STATE(kEntitySalko, Salko, setup_function17);
 			getScenes()->loadSceneFromPosition(kCarGreenSleeping, 13);
 
-			setup_function53();
+			setup_satisfied();
 			break;
 
 		case 4:
@@ -2752,7 +2752,7 @@ IMPLEMENT_FUNCTION(52, August, function52)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(53, August, function53)
+IMPLEMENT_FUNCTION(53, August, satisfied)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2769,7 +2769,7 @@ IMPLEMENT_FUNCTION(53, August, function53)
 
 		case 1:
 			setCallback(2);
-			setup_function20(false);
+			setup_exitCompartment(false);
 			break;
 
 		case 2:
@@ -2778,7 +2778,7 @@ IMPLEMENT_FUNCTION(53, August, function53)
 			break;
 
 		case 3:
-			setup_function54();
+			setup_inSalon3();
 			break;
 		}
 		break;
@@ -2786,7 +2786,7 @@ IMPLEMENT_FUNCTION(53, August, function53)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(54, August, function54)
+IMPLEMENT_FUNCTION(54, August, inSalon3)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2802,7 +2802,7 @@ IMPLEMENT_FUNCTION(54, August, function54)
 				break;
 
 			getData()->inventoryItem = kItemNone;
-			setup_function55();
+			setup_leaveSalon();
 		}
 		break;
 
@@ -2882,7 +2882,7 @@ IMPLEMENT_FUNCTION(54, August, function54)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(55, August, function55)
+IMPLEMENT_FUNCTION(55, August, leaveSalon)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2911,11 +2911,11 @@ IMPLEMENT_FUNCTION(55, August, function55)
 
 		case 3:
 			setCallback(4);
-			setup_function19(true, false);
+			setup_enterCompartment(true, false);
 			break;
 
 		case 4:
-			setup_function56();
+			setup_beforeVienna();
 			break;
 		}
 		break;
@@ -2923,7 +2923,7 @@ IMPLEMENT_FUNCTION(55, August, function55)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(56, August, function56)
+IMPLEMENT_FUNCTION(56, August, beforeVienna)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -2956,7 +2956,7 @@ IMPLEMENT_FUNCTION(57, August, chapter4)
 		break;
 
 	case kActionNone:
-		setup_chapter4Handler();
+		setup_goToDinner4();
 		break;
 
 	case kActionDefault:
@@ -2975,14 +2975,14 @@ IMPLEMENT_FUNCTION(57, August, chapter4)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(58, August, chapter4Handler)
+IMPLEMENT_FUNCTION(58, August, goToDinner4)
 	switch (savepoint.action) {
 	default:
 		break;
 
 	case kActionDefault:
 		setCallback(1);
-		setup_function20(true);
+		setup_exitCompartment(true);
 		break;
 
 	case kActionCallback:
@@ -3042,13 +3042,13 @@ IMPLEMENT_FUNCTION(59, August, function59)
 		break;
 
 	case kAction123793792:
-		setup_function60();
+		setup_dinner4();
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(60, August, function60)
+IMPLEMENT_FUNCTION(60, August, dinner4)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3096,7 +3096,7 @@ IMPLEMENT_FUNCTION(60, August, function60)
 
 		case 2:
 			getSavePoints()->push(kEntityAugust, kEntityWaiter1, kAction286403504);
-			setup_function61();
+			setup_returnCompartment4();
 			break;
 		}
 		break;
@@ -3117,7 +3117,7 @@ IMPLEMENT_FUNCTION(60, August, function60)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(61, August, function61)
+IMPLEMENT_FUNCTION(61, August, returnCompartment4)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3144,16 +3144,16 @@ IMPLEMENT_FUNCTION(61, August, function61)
 
 		case 2:
 			setCallback(3);
-			setup_function19(false, false);
+			setup_enterCompartment(false, false);
 			break;
 
 		case 3:
 			setCallback(4);
-			setup_function21((TimeValue)(getState()->time + 4500));
+			setup_compartmentLogic((TimeValue)(getState()->time + 4500));
 			break;
 
 		case 4:
-			setup_function62();
+			setup_goSalon4();
 			break;
 		}
 		break;
@@ -3161,7 +3161,7 @@ IMPLEMENT_FUNCTION(61, August, function61)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(62, August, function62)
+IMPLEMENT_FUNCTION(62, August, goSalon4)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3230,7 +3230,7 @@ IMPLEMENT_FUNCTION(62, August, function62)
 		break;
 
 	case kAction125826561:
-		setup_function63();
+		setup_drinking();
 		break;
 
 	case kAction134486752:
@@ -3240,7 +3240,7 @@ IMPLEMENT_FUNCTION(62, August, function62)
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(63, August, function63)
+IMPLEMENT_FUNCTION(63, August, drinking)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3253,7 +3253,7 @@ IMPLEMENT_FUNCTION(63, August, function63)
 		if (getState()->time > kTime2488500 && !params->param4) {
 			params->param4 = 1;
 			getData()->inventoryItem = kItemNone;
-			setup_function64();
+			setup_drunk();
 			break;
 		}
 
@@ -3294,14 +3294,14 @@ IMPLEMENT_FUNCTION(63, August, function63)
 			getAction()->playAnimation(kEventAugustDrink);
 			getScenes()->loadSceneFromPosition(kCarRestaurant, 55);
 
-			setup_function64();
+			setup_drunk();
 		}
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(64, August, function64)
+IMPLEMENT_FUNCTION(64, August, drunk)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3405,11 +3405,11 @@ IMPLEMENT_FUNCTION_END
 //////////////////////////////////////////////////////////////////////////
 IMPLEMENT_FUNCTION(67, August, chapter5Handler)
 	if (savepoint.action == kActionProceedChapter5)
-		setup_function68();
+		setup_hiding();
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(68, August, function68)
+IMPLEMENT_FUNCTION(68, August, hiding)
 	switch (savepoint.action) {
 	default:
 		break;
@@ -3518,13 +3518,13 @@ IMPLEMENT_FUNCTION(68, August, function68)
 	case kAction203078272:
 		getSavePoints()->push(kEntityAugust, kEntityTatiana, kAction203078272);
 
-		setup_unhookCars();
+		setup_cutCarsLoose();
 		break;
 	}
 IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
-IMPLEMENT_FUNCTION(69, August, unhookCars)
+IMPLEMENT_FUNCTION(69, August, cutCarsLoose)
 	switch (savepoint.action) {
 	default:
 		break;

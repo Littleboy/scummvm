@@ -154,7 +154,7 @@ public:
 	 */
 	DECLARE_VFUNCTION_2(updateEntity, CarIndex car, EntityPosition entityPosition)
 
-	DECLARE_FUNCTION_1(function17, TimeValue timeValue)
+	DECLARE_FUNCTION_1(lookingForCath, TimeValue timeValue)
 
 	/**
 	 * Updates the entity
@@ -164,32 +164,27 @@ public:
 	 */
 	DECLARE_FUNCTION_2(updateEntity2, CarIndex car, EntityPosition entityPosition)
 
-	DECLARE_FUNCTION_2(function19, bool, bool)
+	DECLARE_FUNCTION_2(enterCompartment, bool, bool)
 
-	DECLARE_FUNCTION_1(function20, bool)
-	DECLARE_FUNCTION_1(function21, TimeValue timeValue)
+	DECLARE_FUNCTION_1(exitCompartment, bool)
+	DECLARE_FUNCTION_1(compartmentLogic, TimeValue timeValue)
 
 	/**
 	 * Setup Chapter 1
 	 */
 	DECLARE_VFUNCTION(chapter1)
 
-	DECLARE_FUNCTION_1(function23, TimeValue timeValue)
+	DECLARE_FUNCTION_1(knockTyler, TimeValue timeValue)
 	DECLARE_FUNCTION(dinner)
-
-	/**
-	 * Handle Chapter 1 events
-	 */
-	DECLARE_FUNCTION(chapter1Handler)
-
-	DECLARE_FUNCTION(function26)
-	DECLARE_FUNCTION(function27)
-	DECLARE_FUNCTION(function28)
-	DECLARE_FUNCTION(function29)
-	DECLARE_FUNCTION(restaurant)
-	DECLARE_FUNCTION(function31)
-	DECLARE_FUNCTION(function32)
-	DECLARE_FUNCTION(function33)
+	DECLARE_FUNCTION(waitTyler)
+	DECLARE_FUNCTION(seekTyler)
+	DECLARE_FUNCTION(goToDinner)
+	DECLARE_FUNCTION(orderDinner)
+	DECLARE_FUNCTION(eatingDinner)
+	DECLARE_FUNCTION(greatAnna)
+	DECLARE_FUNCTION(returnFromDinner)
+	DECLARE_FUNCTION(goSalon)
+	DECLARE_FUNCTION(backFromSalon)
 	DECLARE_FUNCTION(function34)
 
 	/**
@@ -197,14 +192,10 @@ public:
 	 */
 	DECLARE_VFUNCTION(chapter2)
 
-	/**
-	 * Handle Chapter 2 events
-	 */
-	DECLARE_FUNCTION(chapter2Handler)
-
-	DECLARE_FUNCTION(function37)
-	DECLARE_FUNCTION(function38)
-	DECLARE_FUNCTION(function39)
+	DECLARE_FUNCTION(atBreakfast)
+	DECLARE_FUNCTION(openCompartment)
+	DECLARE_FUNCTION(inSalon2)
+	DECLARE_FUNCTION(endChapter2)
 
 	/**
 	 * Setup Chapter 3
@@ -213,41 +204,33 @@ public:
 
 	DECLARE_FUNCTION_2(function41, CarIndex car, EntityPosition entityPosition)
 	DECLARE_FUNCTION_3(function42, CarIndex car, EntityPosition entityPosition, bool)
-
-	/**
-	 * Handle Chapter 3 events
-	 */
-	DECLARE_FUNCTION(chapter3Handler)
-
-	DECLARE_FUNCTION(function44)
+	DECLARE_FUNCTION(goLunch)
+	DECLARE_FUNCTION(returnLunch)
 	DECLARE_FUNCTION(function45)
-	DECLARE_FUNCTION(function46)
-	DECLARE_FUNCTION(function47)
-	DECLARE_FUNCTION(function48)
-	DECLARE_FUNCTION(function49)
+	DECLARE_FUNCTION(reading)
+	DECLARE_FUNCTION(bathroomTrip)
+	DECLARE_FUNCTION(dressing)
+	DECLARE_FUNCTION(goConcert)
 	DECLARE_FUNCTION(function50)
-	DECLARE_FUNCTION(function51)
-	DECLARE_FUNCTION(function52)
-	DECLARE_FUNCTION(function53)
-	DECLARE_FUNCTION(function54)
-	DECLARE_FUNCTION(function55)
-	DECLARE_FUNCTION(function56)
+	DECLARE_FUNCTION(stalkAnna)
+	DECLARE_FUNCTION(afterConcert)
+	DECLARE_FUNCTION(satisfied)
+	DECLARE_FUNCTION(inSalon3)
+	DECLARE_FUNCTION(leaveSalon)
+	DECLARE_FUNCTION(beforeVienna)
 
 	/**
 	 * Setup Chapter 4
 	 */
 	DECLARE_VFUNCTION(chapter4)
-	/**
-	 * Handle Chapter 4 events
-	 */
-	DECLARE_FUNCTION(chapter4Handler)
 
+	DECLARE_FUNCTION(goToDinner4)
 	DECLARE_FUNCTION(function59)
-	DECLARE_FUNCTION(function60)
-	DECLARE_FUNCTION(function61)
-	DECLARE_FUNCTION(function62)
-	DECLARE_FUNCTION(function63)
-	DECLARE_FUNCTION(function64)
+	DECLARE_FUNCTION(dinner4)
+	DECLARE_FUNCTION(returnCompartment4)
+	DECLARE_FUNCTION(goSalon4)
+	DECLARE_FUNCTION(drinking)
+	DECLARE_FUNCTION(drunk)
 	DECLARE_FUNCTION(function65)
 
 	/**
@@ -260,8 +243,8 @@ public:
 	 */
 	DECLARE_FUNCTION(chapter5Handler)
 
-	DECLARE_FUNCTION(function68)
-	DECLARE_FUNCTION(unhookCars)
+	DECLARE_FUNCTION(hiding)
+	DECLARE_FUNCTION(cutCarsLoose)
 
 	DECLARE_NULL_FUNCTION()
 };

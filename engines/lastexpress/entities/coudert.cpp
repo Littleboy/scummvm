@@ -234,7 +234,7 @@ IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
 IMPLEMENT_FUNCTION_NOSETUP(7, Coudert, playSound16)
-	EXPOSE_PARAMS(EntityData::EntityParametersSIIS);
+	EntityData::EntityParametersSIIS *params = (EntityData::EntityParametersSIIS *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -4131,7 +4131,7 @@ IMPLEMENT_NULL_FUNCTION(63, Coudert)
 // Private functions
 //////////////////////////////////////////////////////////////////////////
 void Coudert::visitCompartment(const SavePoint &savepoint, EntityPosition position, const char *seq1, ObjectIndex compartment, const char *seq2, const char *seq3, EntityPosition sittingPosition, ObjectIndex object, const char *seq4) {
-	EXPOSE_PARAMS(EntityData::EntityParametersIIII)
+    EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:

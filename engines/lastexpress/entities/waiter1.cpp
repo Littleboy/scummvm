@@ -102,7 +102,7 @@ IMPLEMENT_FUNCTION_END
 
 //////////////////////////////////////////////////////////////////////////
 IMPLEMENT_FUNCTION_NOSETUP(5, Waiter1, callbackActionOnDirection)
-	EXPOSE_PARAMS(EntityData::EntityParametersIIII);
+	EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:

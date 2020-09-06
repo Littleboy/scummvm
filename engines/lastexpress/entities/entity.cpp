@@ -117,7 +117,12 @@ EntityData::EntityParameters *EntityData::getParameters(uint callback, byte inde
 	if (index >= 4)
 		error("[EntityData::getParameters] Invalid index value (was: %d, max: 4)", index);
 
-	return _parameters[callback].parameters[index];
+    EntityParameters *parameters = _parameters[callback].parameters[index];
+    
+    if (!parameters)
+        error("[EntityData::getParameters] Parameters are missing of index %d", index);
+    
+	return parameters;
 }
 
 byte EntityData::getCallback(uint callback) const {
@@ -237,7 +242,7 @@ void Entity::setup(ChapterIndex index) {
 //////////////////////////////////////////////////////////////////////////
 
 void Entity::reset(const SavePoint &savepoint, ClothesIndex maxClothes, bool resetItem) {
-	EXPOSE_PARAMS(EntityData::EntityParametersIIII)
+    EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -271,7 +276,7 @@ void Entity::reset(const SavePoint &savepoint, ClothesIndex maxClothes, bool res
 }
 
 void Entity::savegame(const SavePoint &savepoint) {
-	EXPOSE_PARAMS(EntityData::EntityParametersIIII)
+    EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -301,7 +306,7 @@ bool Entity::savegameBloodJacket(byte callback) {
 }
 
 void Entity::playSound(const SavePoint &savepoint, bool resetItem, SoundFlag flag) {
-	EXPOSE_PARAMS(EntityData::EntityParametersSIIS)
+    EntityData::EntityParametersSIIS *params = (EntityData::EntityParametersSIIS *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -321,7 +326,7 @@ void Entity::playSound(const SavePoint &savepoint, bool resetItem, SoundFlag fla
 }
 
 void Entity::draw(const SavePoint &savepoint, bool handleExcuseMe) {
-	EXPOSE_PARAMS(EntityData::EntityParametersSIIS)
+    EntityData::EntityParametersSIIS *params = (EntityData::EntityParametersSIIS *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -345,7 +350,7 @@ void Entity::draw(const SavePoint &savepoint, bool handleExcuseMe) {
 }
 
 void Entity::draw2(const SavePoint &savepoint) {
-	EXPOSE_PARAMS(EntityData::EntityParametersSSII)
+    EntityData::EntityParametersSSII *params = (EntityData::EntityParametersSSII *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -363,7 +368,7 @@ void Entity::draw2(const SavePoint &savepoint) {
 }
 
 void Entity::updateFromTicks(const SavePoint &savepoint) {
-	EXPOSE_PARAMS(EntityData::EntityParametersIIII)
+    EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -379,7 +384,7 @@ void Entity::updateFromTicks(const SavePoint &savepoint) {
 }
 
 void Entity::updateFromTime(const SavePoint &savepoint) {
-	EXPOSE_PARAMS(EntityData::EntityParametersIIII)
+    EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -424,7 +429,7 @@ void Entity::callbackActionRestaurantOrSalon(const SavePoint &savepoint) {
 }
 
 void Entity::updateEntity(const SavePoint &savepoint, bool handleExcuseMe) {
-	EXPOSE_PARAMS(EntityData::EntityParametersIIII)
+    EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -449,7 +454,7 @@ void Entity::updateEntity(const SavePoint &savepoint, bool handleExcuseMe) {
 }
 
 void Entity::callSavepoint(const SavePoint &savepoint, bool handleExcuseMe) {
-	EXPOSE_PARAMS(EntityData::EntityParametersSIIS)
+    EntityData::EntityParametersSIIS *params = (EntityData::EntityParametersSIIS *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -482,7 +487,7 @@ void Entity::callSavepoint(const SavePoint &savepoint, bool handleExcuseMe) {
 }
 
 void Entity::enterExitCompartment(const SavePoint &savepoint, EntityPosition position1, EntityPosition position2, CarIndex car, ObjectIndex compartment, bool alternate, bool updateLocation) {
-	EXPOSE_PARAMS(EntityData::EntityParametersSIIS)
+    EntityData::EntityParametersSIIS *params = (EntityData::EntityParametersSIIS *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:
@@ -585,7 +590,7 @@ void Entity::goToCompartmentFromCompartment(const SavePoint &savepoint, ObjectIn
 }
 
 void Entity::updatePosition(const SavePoint &savepoint, bool handleExcuseMe) {
-	EXPOSE_PARAMS(EntityData::EntityParametersSIII)
+    EntityData::EntityParametersSIII *params = (EntityData::EntityParametersSIII *)_data->getCurrentParameters();
 
 	switch (savepoint.action) {
 	default:

@@ -1866,7 +1866,7 @@ void Chapters::enterExitStation(const SavePoint &savepoint, bool isEnteringStati
 
 //////////////////////////////////////////////////////////////////////////
 void Chapters::enterExitHelper(bool isEnteringStation) {
-	EXPOSE_PARAMS(EntityData::EntityParametersSIIS);
+	EntityData::EntityParametersSIIS *params = (EntityData::EntityParametersSIIS *)_data->getCurrentParameters();
 
 	getSound()->playSound(kEntityChapters, isEnteringStation ? "ARRIVE" : "DEPART", kVolume8);
 	getSoundQueue()->endAmbient();

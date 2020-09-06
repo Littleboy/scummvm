@@ -555,13 +555,13 @@ void Gendarmes::handleAction(const SavePoint &savepoint, bool shouldPlaySound, S
 
 	case kActionNone:
 		if (checkCallback) {
-			EXPOSE_PARAMS(EntityData::EntityParametersIIII);
+			EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 			if (Entity::timeCheckCallbackAction((TimeValue)params->param1, params->param2))
 				break;
 		}
 
 		if (shouldUpdateEntity) {
-			EXPOSE_PARAMS(EntityData::EntityParametersIIII);
+			EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 			if (getEntities()->updateEntity(kEntityGendarmes, (CarIndex)params->param1, (EntityPosition)params->param2)) {
 				callbackAction();
 				break;
@@ -601,7 +601,7 @@ void Gendarmes::handleAction(const SavePoint &savepoint, bool shouldPlaySound, S
 	case kActionDefault:
 		// Only handle when passing SIIS params
 		if (!checkCallback && !shouldUpdateEntity) {
-			EXPOSE_PARAMS(EntityData::EntityParametersSIIS);
+			EntityData::EntityParametersSIIS *params = (EntityData::EntityParametersSIIS *)_data->getCurrentParameters();
 
 			if (!shouldPlaySound)
 				getEntities()->drawSequenceRight(kEntityGendarmes, (char *)&params->seq1);
@@ -610,7 +610,7 @@ void Gendarmes::handleAction(const SavePoint &savepoint, bool shouldPlaySound, S
 		}
 
 		if (shouldUpdateEntity) {
-			EXPOSE_PARAMS(EntityData::EntityParametersIIII);
+			EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 			if (getEntities()->updateEntity(kEntityGendarmes, (CarIndex)params->param1, (EntityPosition)params->param2)) {
 				callbackAction();
 				break;

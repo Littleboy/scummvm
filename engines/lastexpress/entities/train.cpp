@@ -546,7 +546,7 @@ IMPLEMENT_FUNCTION_END
 // Private functions
 //////////////////////////////////////////////////////////////////////////
 void Train::handleCompartmentAction() {
-	EXPOSE_PARAMS(EntityData::EntityParametersIIII)
+    EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 
 	if (params->param8)
 		getSavePoints()->push(kEntityTrain, kEntityMahmud, kAction290410610, params->param1);
@@ -560,7 +560,7 @@ void Train::handleCompartmentAction() {
 
 //////////////////////////////////////////////////////////////////////////
 void Train::resetParam8() {
-	EXPOSE_PARAMS(EntityData::EntityParametersIIII)
+    EntityData::EntityParametersIIII *params = (EntityData::EntityParametersIIII *)_data->getCurrentParameters();
 	EntityData::EntityParametersIIIS *params1 = (EntityData::EntityParametersIIIS*)_data->getCurrentParameters(1);
 
 	if (params->param8

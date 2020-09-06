@@ -85,19 +85,16 @@ struct SavePoint;
 //////////////////////////////////////////////////////////////////////////
 // Callbacks
 //////////////////////////////////////////////////////////////////////////
-#define ENTITY_CALLBACK(class, name, pointer) \
-	Common::Functor1Mem<const SavePoint&, void, class>(pointer, &class::name)
-
 #define ADD_CALLBACK_FUNCTION_TYPE(class, name, type) \
-	_callbacks.push_back(new ENTITY_CALLBACK(class, name, this)); \
+	_callbacks.push_back(new Common::Functor1Mem<const SavePoint&, void, class>(this, &class::name)); \
 	_paramsTypeSetters.push_back(&EntityData::resetParametersType<EntityData::type, EntityData::EntityParametersIIII, EntityData::EntityParametersIIII>);
 
 #define ADD_CALLBACK_FUNCTION_TYPE2(class, name, type1, type2) \
-	_callbacks.push_back(new ENTITY_CALLBACK(class, name, this)); \
+	_callbacks.push_back(new Common::Functor1Mem<const SavePoint&, void, class>(this, &class::name)); \
 	_paramsTypeSetters.push_back(&EntityData::resetParametersType<EntityData::type1, EntityData::type2, EntityData::EntityParametersIIII>);
 
 #define ADD_CALLBACK_FUNCTION_TYPE3(class, name, type1, type2, type3) \
-	_callbacks.push_back(new ENTITY_CALLBACK(class, name, this)); \
+	_callbacks.push_back(new Common::Functor1Mem<const SavePoint&, void, class>(this, &class::name)); \
 	_paramsTypeSetters.push_back(&EntityData::resetParametersType<EntityData::type1, EntityData::type2, EntityData::type3>);
 
 #define ADD_CALLBACK_FUNCTION(class, name) ADD_CALLBACK_FUNCTION_TYPE(class, name, EntityParametersIIII)
@@ -117,7 +114,7 @@ struct SavePoint;
 #define ADD_CALLBACK_FUNCTION_IISS(class, name) ADD_CALLBACK_FUNCTION_TYPE(class, name, EntityParametersIISS)
 
 #define ADD_NULL_FUNCTION() \
-	_callbacks.push_back(new ENTITY_CALLBACK(Entity, nullfunction, this)); \
+	_callbacks.push_back(new Common::Functor1Mem<const SavePoint&, void, Entity>(this, &Entity::nullfunction)); \
 	_paramsTypeSetters.push_back(&(EntityData::resetParametersType<EntityData::EntityParametersIIII, EntityData::EntityParametersIIII, EntityData::EntityParametersIIII>));
 
 #define WRAP_SETUP_FUNCTION(className, method) \
